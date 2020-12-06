@@ -26,13 +26,13 @@ public class IngredientController {
         return "ingredients/index";
     }
 
-    @GetMapping("create")
+    @GetMapping("add")
     public String displayCreateIngredientForm(Model model) {
-        model.addAttribute("name", "Create Ingredient");
-        return "ingredients/create";
+        model.addAttribute("name", "Add Ingredient");
+        return "ingredients/add";
     }
 
-    @PostMapping("create")
+    @PostMapping("Add")
     public String processCreateIngredientForm(@RequestParam String ingredientName,
                                               @RequestParam String ingredientDescription) {
         ingredients.add(new Ingredient(ingredientName, ingredientDescription));
