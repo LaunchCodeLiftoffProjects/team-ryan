@@ -32,7 +32,7 @@ public class IngredientController {
         return "ingredients/add";
     }
 
-    @PostMapping("Add")
+    @PostMapping("add")
     public String processCreateIngredientForm(@RequestParam String ingredientName,
                                               @RequestParam String ingredientDescription) {
         ingredients.add(new Ingredient(ingredientName, ingredientDescription));
