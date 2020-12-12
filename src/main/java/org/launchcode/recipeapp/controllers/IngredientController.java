@@ -26,6 +26,7 @@ public class IngredientController {
         return "ingredients/index";
     }
 
+
     @GetMapping("add")
     public String displayCreateIngredientForm(Model model) {
         model.addAttribute("name", "Add Ingredient");
@@ -34,8 +35,9 @@ public class IngredientController {
 
     @PostMapping("add")
     public String processCreateIngredientForm(@RequestParam String ingredientName,
-                                              @RequestParam String ingredientDescription) {
-        ingredients.add(new Ingredient(ingredientName, ingredientDescription));
+                                              @RequestParam String ingredientDescription,
+                                              @RequestParam String ingredientCategory) {
+        ingredients.add(new Ingredient(ingredientName, ingredientDescription, ingredientCategory));
         return "redirect:";
     }
 

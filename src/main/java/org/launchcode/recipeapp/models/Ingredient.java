@@ -8,10 +8,14 @@ public class Ingredient {
 
     private String name;
     private String description;
+    private String category;
 
-    public Ingredient(String name, String description) {
+
+
+    public Ingredient(String name, String description, String category) {
         this.name = name;
         this.description = description;
+        this.category = String.valueOf(category);
         this.id = nextId;
         nextId++;
     }
@@ -32,10 +36,20 @@ public class Ingredient {
         this.description = description;
     }
 
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
     @Override
     public String toString() {
         return name;
     }
+
+
 
     public Integer getId() {
         return id;
