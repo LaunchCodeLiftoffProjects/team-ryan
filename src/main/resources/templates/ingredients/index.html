@@ -14,14 +14,13 @@
         <tr>
             <th>ID</th>
             <th>Name</th>
-            <th>Description</th>
+            <th>Category</th>
         </tr>
     </thead>
     <tr th:each="ingredient : ${ingredients}">
         <td th:text ="${ingredient.id}"></td>
         <td th:text="${ingredient.name}"></td>
-        <td th:text="${ingredient.description}"></td>
-        <td th:text="${ingredient.category}"></td>
+        <td th:text="${ingredient.category.displayName}"></td>
     </tr>
 </table>
 

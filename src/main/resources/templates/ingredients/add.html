@@ -6,80 +6,27 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
-<h1>Add Ingredients</h1>
 
+<h1>Add An Ingredient</h1>
 <form method="post">
     <div class="form-group">
         <label>Name
-            <input type="text" name="ingredientName" class="form-control">
+            <input th:field="${ingredient.name}" class="form-control">
         </label>
+        <p class="error" th:errors="${ingredient.name}"></p>
     </div>
-<!--    <div class="form-group">-->
-<!--        <label>Description-->
-<!--            <input type="text" name="ingredientDescription" class="form-control">-->
-<!--        </label>-->
-<!--    </div>-->
-<!--    <div class ="form-group" id="allergens">-->
-<!--        <h1>Allergens</h1>-->
-<!--        <label>Tree Nuts-->
-<!--            <input type="checkbox" id="containsTreeNuts" value="Tree Nuts">-->
-<!--        </label>-->
-<!--        <label>Milk-->
-<!--            <input type="checkbox" id="ContainsMilk" value="milk">-->
-<!--        </label>-->
-<!--        <label>Peanuts-->
-<!--            <input type="checkbox" id="containsPeanuts" value="Peanuts">-->
-<!--        </label>-->
-<!--        <label>Eggs-->
-<!--            <input type="checkbox" id="containsEggs" value="Eggs">-->
-<!--        </label>-->
-<!--        <label>Fish-->
-<!--            <input type="checkbox" id="containsFish" value="Fish">-->
-<!--        </label>-->
-<!--        <label>Shellfish-->
-<!--            <input type="checkbox" id="containsShellfish" value="Shellfish">-->
-<!--        </label>-->
-<!--        <label>Wheat-->
-<!--            <input type="checkbox" id="containsWheat" value="Wheat">-->
-<!--        </label>-->
-<!--        <label>Soy-->
-<!--            <input type="checkbox" id="containsSoy" value="Soy">-->
-<!--        </label>-->
-<!--    </div>-->
-    <div class="form-group" id="Category">
-        <h1>Category</h1>
-        <label>Vegetable
-            <input type="radio" name="category" id="vegetable" value="Vegetable">
-        </label>
-        <label>Fruit
-            <input type="radio" name="category" id="Fruit" value="Fruit">
-        </label>
-        <label> Grain
-            <input type="radio" name="category" id="Grain" value="Grain">
-        </label>
-        <label>Protein
-            <input type="radio" name="category" id="Protein" value="Protein">
-        </label>
-        <label>Dairy
-            <input type="radio" name="category" id="Dairy" value="Dairy">
-        </label>
-        <label>Oil
-            <input type="radio" name="category" id="Oil" value="Oil">
-        </label>
-        <label>Other
-            <input type="radio" name="category" id="Other" value="Other">
-        </label>
-    </div>
-<!--    <div>-->
-<!--        <h1>Pantry Staple</h1>-->
-<!--        <label>Yes-You probably have this in your pantry-->
-<!--            <input type="radio" name="pantry_staple" id="Yes-Staple" value="YesStaple">-->
-<!--        </label>-->
-<!--        <label>No-You will probably need to buy this-->
-<!--            <input type="radio" name="pantry_staple" id="No-Staple" value="NoStaple">-->
-<!--        </label>-->
+    <div class="form-group">
+        <label>Category
+        <select th:field="${ingredient.category}">
+            <option th:each="category :${categorys}"
+                    th:value="${category}"
+                    th:text="${category.displayName}"
+            ></option>
 
-<!--    </div>-->
+        </select>
+        </label>
+    </div>
+
     <div class="form-group">
         <input type="submit" value="Add" class="btn btn-success">
     </div>

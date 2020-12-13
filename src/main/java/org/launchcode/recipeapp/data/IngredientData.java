@@ -1,4 +1,4 @@
-package org.launchcode.recipeapp.models.data;
+package org.launchcode.recipeapp.data;
 
 import org.launchcode.recipeapp.models.Ingredient;
 
@@ -15,7 +15,7 @@ public class IngredientData {
     }
 
     public static Ingredient getById(int id) {
-        return  ingredients.get(id);
+        return ingredients.get(id);
     }
 
     public static void add (Ingredient ingredient) {
