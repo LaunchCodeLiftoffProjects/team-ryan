@@ -3,6 +3,7 @@ package org.launchcode.recipeapp.controllers;
 import org.launchcode.recipeapp.models.Ingredient;
 import org.launchcode.recipeapp.models.IngredientCategory;
 import org.launchcode.recipeapp.data.IngredientData;
+import org.launchcode.recipeapp.models.IngredientToList;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -34,6 +35,7 @@ public class IngredientController {
         model.addAttribute("name", "Add Ingredient");
         model.addAttribute(new Ingredient());
         model.addAttribute("categorys", IngredientCategory.values());
+        model.addAttribute("toLists", IngredientToList.values());
         return "ingredients/add";
     }
 

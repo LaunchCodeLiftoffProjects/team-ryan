@@ -1,9 +1,12 @@
 package org.launchcode.recipeapp.models;
 
+
+import javax.persistence.Entity;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.Objects;
 
+@Entity
 public class Ingredient {
     private int id;
     private static int nextId = 1;
@@ -12,17 +15,15 @@ public class Ingredient {
     @Size(min = 3, max = 50, message = "Ingredient must be between 3 and 50 characters")
     private String name;
 
-    private String description;
-
-
     private IngredientCategory category;
+    private IngredientToList toList;
 
 
-    public Ingredient(String name, String description, IngredientCategory category) {
+    public Ingredient(String name, String description, IngredientCategory category, IngredientToList toList) {
         this();
         this.name = name;
-        //this.description = description;
         this.category = category;
+        this.toList = toList;
 
     }
 
@@ -39,20 +40,20 @@ public class Ingredient {
         this.name = name;
     }
 
-//    public String getDescription() {
-//        return description;
-//    }
-//
-//    public void setDescription(String description) {
-//        this.description = description;
-   // }
-
     public IngredientCategory getCategory() {
         return category;
     }
 
     public void setCategory(IngredientCategory category) {
         this.category = category;
+    }
+
+    public IngredientToList getToList() {
+        return toList;
+    }
+
+    public void setToList(IngredientToList toList) {
+        this.toList = toList;
     }
 
     public Integer getId() {

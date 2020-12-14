@@ -18,12 +18,21 @@
     <div class="form-group">
         <label>Category
         <select th:field="${ingredient.category}">
-            <option th:each="category :${categorys}"
+            <option th:each="category : ${categorys}"
                     th:value="${category}"
                     th:text="${category.displayName}"
             ></option>
-
         </select>
+        </label>
+    </div>
+    <div class="form-group">
+        <label>Add to Shopping List?
+            <select th:field="${ingredient.toList}">
+                <option th:each="toList : ${toLists}"
+                        th:value="${toList}"
+                        th:text="${toList.displayName}"
+                ></option>
+            </select>
         </label>
     </div>
 
