@@ -1,20 +1,42 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org/">
 
+<head th:fragment="head">
+
+    <!-- Bootstrap stylesheets and script -->
+    <link th:href="@{/css/bootstrap.css}" rel="stylesheet" />
+    <link th:href="@{/css/recipeapp.css}" rel="stylesheet" />
+    <script type="text/javascript" th:src="@{/js/bootstrap.js}"></script>
+
+    <title>Recipe App</title>
+</head>
+
 <body>
 
-<div th:fragment="page-header" class="navbar">
+<div th:fragment="page-header" class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
-            <a class="navbar-brand">One Plate at a Time</a>
+            <h2><a th:href="@{/}" class="navbar-logo">Recipe App</a></h2>
         </div>
         <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li><a>My Account</a></li>
-                <li><a>Find a Recipe</a></li>
-                <li><a>LogIn</a></li>
+            <ul class="navbar-left">
+                <li><a><form class="form">
+                        <input class="form" type="search" placeholder="Find A Recipe">
+                        <button class="button" type="submit">Search</button>
+                    </form></a>
+                </li>
             </ul>
         </div>
+        <div>
+            <ul class="navbar-right">
+                <a href="#">  Home  </a>
+                <a href="#">  Sign Up  </a>
+                <a href="#">  Login  </a>
+            </ul>
+        </div>
+
+
+
     </div>
 </div>
 
