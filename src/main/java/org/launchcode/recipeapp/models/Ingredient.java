@@ -1,15 +1,18 @@
 package org.launchcode.recipeapp.models;
 
-
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.Objects;
 
 @Entity
 public class Ingredient {
+
+    @Id
+    @GeneratedValue
     private int id;
-    private static int nextId = 1;
 
     @NotBlank(message = "Please enter an ingredient")
     @Size(min = 3, max = 50, message = "Ingredient must be between 3 and 50 characters")
@@ -20,17 +23,13 @@ public class Ingredient {
 
 
     public Ingredient(String name, String description, IngredientCategory category, IngredientToList toList) {
-        this();
         this.name = name;
         this.category = category;
         this.toList = toList;
 
     }
 
-    public Ingredient() {
-        this.id = nextId;
-        nextId++;
-    }
+    public Ingredient() { }
 
     public String getName() {
         return name;
