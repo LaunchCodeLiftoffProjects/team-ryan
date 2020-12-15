@@ -18,7 +18,7 @@
     <div class="form-group">
         <label>Category
         <select th:field="${ingredient.category}">
-            <option th:each="category : ${categorys}"
+            <option th:each="category : ${categories}"
                     th:value="${category}"
                     th:text="${category.displayName}"
             ></option>

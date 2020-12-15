@@ -34,7 +34,7 @@ public class IngredientController {
     public String displayCreateIngredientForm(Model model) {
         model.addAttribute("name", "Add Ingredient");
         model.addAttribute(new Ingredient());
-        model.addAttribute("categorys", IngredientCategory.values());
+        model.addAttribute("categories", IngredientCategory.values());
         model.addAttribute("toLists", IngredientToList.values());
         return "ingredients/add";
     }
