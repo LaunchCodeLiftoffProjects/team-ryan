@@ -1,6 +1,3 @@
-form {
-    padding: 20px;
-}
 .body-content {
     margin-top: 72px;
 }
@@ -32,11 +29,6 @@ table.job-listing {
     width: 80%;
 }
 
-/*table.job-listing td:first-child {
-    font-weight: bold;
-}
-*/
-
 span {
     font-style: italic;
 }
@@ -56,4 +48,8 @@ label {
 
 .centered {
     text-align: center;
+}
+
+form {
+    padding: 10px;
 }

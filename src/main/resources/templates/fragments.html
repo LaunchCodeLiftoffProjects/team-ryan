@@ -13,30 +13,24 @@
 
 <body>
 
-<div th:fragment="page-header" class="navbar navbar-inverse navbar-fixed-top">
+<div th:fragment="page-header" class="navbar navbar-inverse navbar-fixed-top navbar-custom navbar-text">
+
     <div class="container">
-        <div class="navbar-header">
-            <h2><a th:href="@{/}" class="navbar-logo">Recipe App</a></h2>
+        <div class="logo">
+            <img th:src="@{/Users/mstl/Documents/lc101/recipe-app/src/main/resources/static/images/CHEFU2.png}" alt="CHEFU" width="130"/>
         </div>
-        <div class="navbar-collapse collapse">
-            <ul class="navbar-left">
+        <nav>
+            <ul>
                 <li><a><form class="form">
-                        <input class="form" type="search" placeholder="Find A Recipe">
-                        <button class="button" type="submit">Search</button>
-                    </form></a>
+                    <input class="form" type="search" placeholder="Find Your Match..">
+                    <button class="button" type="submit">SEARCH</button>
+                </form></a>
                 </li>
+                <li href="#">Home</li>
+                <li href="#">Sign Up</li>
+                <li href="#">Login</li>
             </ul>
-        </div>
-        <div>
-            <ul class="navbar-right">
-                <a href="#">  Home  </a>
-                <a href="#">  Sign Up  </a>
-                <a href="#">  Login  </a>
-            </ul>
-        </div>
-
-
-
+        </nav>
     </div>
 </div>
 
