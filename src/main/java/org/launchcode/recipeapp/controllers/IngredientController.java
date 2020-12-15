@@ -1,9 +1,10 @@
 package org.launchcode.recipeapp.controllers;
 
+import org.launchcode.recipeapp.data.IngredientRepository;
 import org.launchcode.recipeapp.models.Ingredient;
 import org.launchcode.recipeapp.models.IngredientCategory;
-import org.launchcode.recipeapp.data.IngredientData;
 import org.launchcode.recipeapp.models.IngredientToList;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -22,10 +23,13 @@ import java.util.List;
 @RequestMapping("ingredients")
 public class IngredientController {
 
+    @Autowired
+    private IngredientRepository ingredientRepository;
+
     @GetMapping
     public String displayAllIngredients(Model model) {
         model.addAttribute("name", "All Ingredients");
-        model.addAttribute("ingredients", IngredientData.getAll());
+        model.addAttribute("ingredients", ingredientRepository.findAll());
         return "ingredients/index";
     }
 
@@ -46,14 +50,14 @@ public class IngredientController {
             model.addAttribute("name", "Add Ingredient");
             return "ingredients/add";
         }
-        IngredientData.add(newIngredient);
+        ingredientRepository.save(newIngredient);
         return "redirect:";
     }
 
     @GetMapping("delete")
     public String displayDeleteIngredientForm(Model model) {
         model.addAttribute("name", "Delete Ingredients");
-        model.addAttribute("ingredients", IngredientData.getAll());
+        model.addAttribute("ingredients", ingredientRepository.findAll());
         return "ingredients/delete";
     }
 
@@ -61,7 +65,7 @@ public class IngredientController {
     public String processDeleteIngredientsForm(@RequestParam(required = false) int[] ingredientIds){
         if(ingredientIds != null) {
             for (int id: ingredientIds) {
-                IngredientData.remove(id);
+                ingredientRepository.deleteById(id);
             }
         }
 
