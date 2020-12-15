@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class LandingController {
-    @GetMapping("/liftoff")
+    @GetMapping("")
     public String index() {
         return "landing";
     }
