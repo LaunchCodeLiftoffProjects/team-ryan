@@ -69,6 +69,7 @@ import java.util.Optional;
                 return "register";
             }
 
+            String username = registerFormDTO.getUsername();
             String password = registerFormDTO.getPassword();
             String verifyPassword = registerFormDTO.getVerifyPassword();
             if (!password.equals(verifyPassword)) {
@@ -77,7 +78,7 @@ import java.util.Optional;
                 return "register";
             }
 
-            User newUser = new User(registerFormDTO.getUsername(), registerFormDTO.getPassword());
+            User newUser = new User(username, password);
             userRepository.save(newUser);
             setUserInSession(request.getSession(), newUser);
 
@@ -102,17 +103,9 @@ import java.util.Optional;
             }
 
             User theUser = userRepository.findByUsername(loginFormDTO.getUsername());
-
-            if (theUser == null) {
-                errors.rejectValue("username", "user.invalid", "The given username does not exist");
-                model.addAttribute("title", "Log In");
-                return "login";
-            }
-
             String password = loginFormDTO.getPassword();
-
-            if (!theUser.isMatchingPassword(password)) {
-                errors.rejectValue("password", "password.invalid", "Invalid password");
+            if (theUser == null || !theUser.isMatchingPassword(password)) {
+                errors.rejectValue("username", "user.invalid", "The combination of username and password is not correct.");
                 model.addAttribute("title", "Log In");
                 return "login";
             }
