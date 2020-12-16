@@ -5,10 +5,9 @@ background-image: url(https://images.unsplash.com/photo-1565958011703-44f9829ba1
 background-size: cover;
 background-position:center;
 padding: 80px;
-border-radius: 40px;
+border-radius: 30px;
 
 }
-
 
 .topContainer p{
 font-style:italic;
@@ -25,9 +24,8 @@ height: 30px;
  width: 287px;
  height: 250px;
 }
-Background-color
 .row{
-margin-top: 80px;
+margin-top: 90px;
 color: black;
 }
 .footerContainer{
