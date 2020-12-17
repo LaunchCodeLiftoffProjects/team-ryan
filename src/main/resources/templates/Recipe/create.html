@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Recipe</title>
+</head>
+<body>
+<h1>Create Recipe</h1>
+
+<form method="post" action="/Recipe/create">
+    <h4>Recipe Title: <input type="text" name="name"></h4>
+    <h4>About your Recipe: <input type="text" name="about"></h4>
+    <h4>Ingredients: <input type="text" name="ingr"></h4>
+    <h4>Directions: <input type="text" name="direc"></h4>
+    <h4>Recipe Tips: <input type="text" name="tips"></h4>
+    <h4>Photo: <input type="text" name="photo"></h4>
+    <h4>Quantity Served: <input type="text" name=qserve></h4>
+    <h4>Preparation Time: <input type="text" name=preptime></h4>
+    <h4>Cooking Time: <input type="text" name=cooktime></h4>
+    <h4>Course Type: <input type="text" name="coursetype"></h4>
+    <input type="submit" value="Create">
+</form>
+
+</body>
+</html>
