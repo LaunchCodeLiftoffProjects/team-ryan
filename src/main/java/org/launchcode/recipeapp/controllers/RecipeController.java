@@ -1,11 +1,10 @@
 package org.launchcode.recipeapp.controllers;
 
+import org.launchcode.recipeapp.data.RecipeData;
+import org.launchcode.recipeapp.models.Recipes;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,32 +12,40 @@ import java.util.List;
 @Controller
 @RequestMapping("Recipe")
 public class RecipeController {
-    private static List<String> recipes = new ArrayList<>();
 
     @GetMapping
-    public String displayAllEvents(Model model)
-    {
-           model.addAttribute("recipes", recipes);
-           return "Recipe/main";
+    public String displayAllRecipes(Model model) {
+        model.addAttribute("recipes", RecipeData.getAll());
+        return "Recipe/main";
     }
+
     @GetMapping("create")
-    public String renderCreateEventForm()
-    {
+    public String displayCreateRecipeForm() {
         return "Recipe/create";
     }
+
     @PostMapping("create")
-    public String createRecipe(@RequestParam String name, @RequestParam String about, @RequestParam String ingr, @RequestParam String direc, @RequestParam String tips, @RequestParam String photo, @RequestParam String qserve, @RequestParam String preptime, @RequestParam String cooktime, @RequestParam String coursetype, Model model){
-        recipes.add(name);
-        recipes.add(about);
-        recipes.add(ingr);
-        recipes.add(direc);
-        recipes.add(tips);
-        recipes.add(photo);
-        recipes.add(qserve);
-        recipes.add(preptime);
-        recipes.add(cooktime);
-        recipes.add(coursetype);
-        model.addAttribute("recipes", recipes);
+    public String processCreateRecipeForm(@ModelAttribute Recipes newRecipe){
+
+        RecipeData.add(newRecipe);
         return "Recipe/display";
+
     }
-}
+
+    @GetMapping("delete")
+    public String displayDeleteRecipeForm(Model model) {
+        model.addAttribute("name", "Delete Events");
+        model.addAttribute("recipes", RecipeData.getAll());
+        return "Recipe/delete";
+    }
+
+    @PostMapping("delete")
+    public String processDeleteRecipeForm(@RequestParam(required = false) int[] recipeIds) {
+        if (recipeIds != null) {
+            for (int id : recipeIds) {
+                RecipeData.remove(id);
+            }
+        }
+            return "Recipe/display";
+        }
+    }

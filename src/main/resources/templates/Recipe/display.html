@@ -5,11 +5,16 @@
     <title>Recipe</title>
 </head>
 <body>
+
 <h1> Your Recipe </h1>
-<ul>
-    <th:block th:each="recipe:${recipes}">
-        <li th:text="${recipe}"></li>
-    </th:block>
-</ul>
+        <tr th:each="recipe : ${recipes}">
+            <h4>Id: <td th:text="${recipe.id}"></td> </h4>
+            <h4>Name: <td th:text="${recipe.name}"></td></h4>
+            <h4>About: <td th:text="${recipe.about}"></td></h4>
+            <h4>Ingredients: <td th:text="${recipe.ingr}"></td></h4>
+            <h4>Direction: <td th:text="${recipe.direc}"></td></h4>
+        </tr>
+
+</table>
 </body>
 </html>

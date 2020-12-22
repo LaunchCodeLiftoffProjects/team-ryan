@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head>
-    <meta charset="UTF-8">
-    <title>Recipe</title>
+<head th:fragment="head">
+    <meta charset="UTF-8"/>
+    <title>Recipe Creation</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
-<h1>Recipe Creation</h1>
-<nav th:fragment="navigation">
-    <ul>
-        <li><a href="/Recipe/create">Create</a></li>
+
+<nav th:fragments="header">
+    <h1 th:text="${title}">Recipe Creation</h1>
+    <ul class="nav">
+        <li class="nav-item"><a href="/Recipe">Recipe</a></li>
+        <li class="nav-item"><a href="/Recipe/create">Create Recipe</a></li>
     </ul>
 </nav>
 </body>
