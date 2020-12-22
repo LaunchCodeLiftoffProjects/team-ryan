@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
+
 @RequestMapping("Recipe")
 public class RecipeController {
 
@@ -48,4 +49,5 @@ public class RecipeController {
         }
             return "Recipe/display";
         }
+
     }
