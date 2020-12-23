@@ -12,14 +12,12 @@
 <table class="table table-striped">
     <thead>
         <tr>
-<!--            <th>ID</th>-->
             <th>Name</th>
             <th>Category</th>
             <th>Need to Buy?</th>
         </tr>
     </thead>
     <tr th:each="ingredient : ${ingredients}">
-<!--        <td th:text ="${ingredient.id}"></td>-->
         <td th:text="${ingredient.name}"></td>
         <td th:text="${ingredient.category.displayName}"></td>
         <td th:text="${ingredient.toList.displayName}"></td>

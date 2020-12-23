@@ -1,8 +1,8 @@
 package org.launchcode.recipeapp.models;
 
 public enum IngredientToList {
-    ADDTOSHOPPINGLIST("Add to Shopping List"),
-    DONOTADDTOSHOPPINGLIST("Do not Add to Shopping List");
+    ADDTOSHOPPINGLIST("Yes"),
+    DONOTADDTOSHOPPINGLIST("No");
 
     private final String displayName;
 
