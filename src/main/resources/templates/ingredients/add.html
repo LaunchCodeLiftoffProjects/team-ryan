@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http//www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+
+<h1>Add An Ingredient</h1>
+<form method="post">
+    <div class="form-group">
+        <label>Name
+            <input th:field="${ingredient.name}" class="form-control">
+        </label>
+        <p class="error" th:errors="${ingredient.name}"></p>
+    </div>
+    <div class="form-group">
+        <label>Category
+        <select th:field="${ingredient.category}">
+            <option th:each="category : ${categories}"
+                    th:value="${category}"
+                    th:text="${category.displayName}"
+            ></option>
+        </select>
+        </label>
+    </div>
+    <div class="form-group">
+        <label>Add to Shopping List?
+            <select th:field="${ingredient.toList}">
+                <option th:each="toList : ${toLists}"
+                        th:value="${toList}"
+                        th:text="${toList.displayName}"
+                ></option>
+            </select>
+        </label>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Add" class="btn btn-success">
+    </div>
+</form>
+
+</body>
+</html>
