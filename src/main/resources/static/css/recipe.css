@@ -1,5 +1,6 @@
-body {
+html, body {
  font-family: raleway;
+ height: 100%;
 }
 
 ul li{
@@ -115,7 +116,6 @@ ul li:hover{
 }
 
 footer {
- position: absolute;
  bottom: 0;
  left: 0;
  width: 100%;
@@ -133,6 +133,10 @@ footer {
  color: #F4BC53; /* Yellow */
  font-family:raleway;
  font-size: 14px;
+}
+
+.short-footer {
+ position: absolute;
 }
 
 .row{
