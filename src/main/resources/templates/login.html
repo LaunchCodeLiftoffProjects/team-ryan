@@ -4,6 +4,8 @@
 
 <body>
 
+<div class="content">
+
 <div th:replace="fragments :: page-header"></div>
 
 <form class="form-custom" method="post">
@@ -24,8 +26,9 @@
 </form>
 
 <p>Don't have an account? <a href="/register">Register for one.</a></p>
+</div>
 
-<div th:replace="fragments :: footer"></div>
+<div th:replace="fragments :: footer" class="short-footer"></div>
 
 </body>
 </html>

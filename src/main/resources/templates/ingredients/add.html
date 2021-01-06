@@ -4,6 +4,8 @@
 
 <body>
 
+<div class="content">
+
 <div th:replace="fragments :: page-header"></div>
 
 <h1>Add An Ingredient</h1>
@@ -39,6 +41,9 @@
         <input type="submit" value="ADD" class="button btn btn-success">
     </div>
 </form>
+</div>
+
+<div th:replace="fragments :: footer" class="short-footer"></div>
 
 </body>
 </html>
