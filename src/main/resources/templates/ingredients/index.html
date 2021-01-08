@@ -4,6 +4,8 @@
 
 <body>
 
+<div class="content">
+
 <div th:replace="fragments :: page-header"></div>
 
 <header th:replace="fragments :: header"></header>
@@ -18,10 +20,13 @@
     </thead>
     <tr th:each="ingredient : ${ingredients}">
         <td th:text="${ingredient.name}"></td>
-        <td th:text="${ingredient.category}"></td>
-        <td th:text="${ingredient.toList}"></td>
+        <td th:text="${ingredient.category.displayName}"></td>
+        <td th:text="${ingredient.toList.displayName}"></td>
     </tr>
 </table>
+</div>
+
+<div th:replace="fragments :: footer" class="short-footer"></div>
 
 </body>
 </html>

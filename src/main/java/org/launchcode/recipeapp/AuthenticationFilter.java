@@ -19,11 +19,11 @@ public class AuthenticationFilter extends HandlerInterceptorAdapter {
     @Autowired
     AuthenticationController authenticationController;
 
-    private static final List<String> whitelist = Arrays.asList("/login", "/register", "/logout", "/static/css");
+    private static final List<String> whitelist = Arrays.asList("/login", "/register", "/logout", "/css", "/images");
 
     private static boolean isWhitelisted(String path) {
         for (String pathRoot : whitelist) {
-            if (path.startsWith(pathRoot)) {
+            if (path.startsWith(pathRoot) || path.equals("/")) {
                 return true;
             }
         }
