@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
-<body class="container">
 
-<!--<header th:replace="fragments :: page-header"></header>-->
+<body>
 
-<form method="post">
+<div class="content">
+
+<div th:replace="fragments :: page-header"></div>
+
+<form class="form-custom" method="post">
     <div class="form-group">
         <label>Username
             <input class="form-control" th:field="${registerFormDTO.username}" />
@@ -24,8 +27,11 @@
         </label>
     </div>
 
-    <input type="submit" class="btn btn-primary" value="Register" />
+    <input type="submit" class="button btn btn-primary" value="REGISTER" />
 </form>
+</div>
+
+<div th:replace="fragments :: footer" class="short-footer"></div>
 
 </body>
 </html>

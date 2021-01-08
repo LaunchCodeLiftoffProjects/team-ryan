@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http//www.thymeleaf.org">
-<head th:replace="fragments :: head">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <meta charset="UTF-8">
-    <title>Recipe App</title>
-</head>
-<body class="container">
+<head th:replace="fragments :: head"></head>
+
+<body>
+
+<div class="content">
+
+<div th:replace="fragments :: page-header"></div>
 
 <header th:replace="fragments :: header"></header>
 
@@ -23,6 +24,10 @@
         <td th:text="${ingredient.toList.displayName}"></td>
     </tr>
 </table>
+</div>
+
+<div th:replace="fragments :: footer" class="short-footer"></div>
 
 </body>
 </html>
+
