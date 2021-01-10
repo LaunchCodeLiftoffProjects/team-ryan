@@ -180,11 +180,42 @@
     </div>
 </div>
 
+<script>
+         window.addEventListener("load", function(){
+           let json = [];
+           fetch("https://api.spoonacular.com/recipes/complexSearch?apiKey=3057efc6229646c8b0bda8fd922322a6&includeNutrition=true&cusine=true").then(function(response){
+             response.json().then(function(json){
+             console.log(json);
+               const food = document.getElementById("food");
+               for(let i = 0; i < json["results"].length; i++){
+
+                food.innerHTML +=
+                `
+                <div>
+                  <h3>Recipe ${json["results"][i]["title"]}</h3>
+                  <img src=${json["results"][i]["image"]} height=250></img>
+                </div>
+                ` ;
+               }
+
+             });
+           });
+
+         });
+      </script>
+</head>
+
+<h1>Food</h1>
+<div id="food">
+    <h3>Recipe</h3>
+</div>
+
 <div th:replace="fragments :: footer"></div>
 
+<script src="../static/javascript/api.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<script src="../resources/static/javascript/api.js"></script>
+
 
 </body>
 </html>
