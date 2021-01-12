@@ -22,9 +22,6 @@ public class Recipe extends AbstractEntity {
     @NotNull
     private RecipeDetails recipeDetails;
 
-    @Size(max = 500, message = "Description too long!")
-    private String description;
-
     @ManyToOne
     @NotNull(message ="Category is required")
     private RecipeCategory recipeCategory;

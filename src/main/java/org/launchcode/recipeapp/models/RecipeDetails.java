@@ -8,7 +8,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 @Entity
-public class RecipeDetails extends AbstractRecipe {
+public class RecipeDetails extends AbstractEntity {
     @Size(max = 500, message = "Description too long!")
     private String description;
 
