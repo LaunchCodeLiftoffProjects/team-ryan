@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
-<body class="container">
 
-<header th:replace="fragments :: header"></header>
+<body class="container">
+<div th:replace="fragments :: recipes-page-header"></div>
 
 <table  class="table table-striped">
     <thead>
@@ -12,10 +12,8 @@
     </tr>
     </thead>
     <tr th:each="category : ${categories}">
-        <td><a th:text="${category.name}" th:href="'/recipes?recipeId=' + ${category.id}"></a></td>
-
+        <td><a th:text="${category.name}" th:href="'/recipes?categoryId=' + ${category.id}"></a></td>
     </tr>
 </table>
-
 </body>
 </html>

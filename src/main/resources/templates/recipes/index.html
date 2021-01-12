@@ -2,25 +2,16 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
 <body class="container">
-
-<header th:replace="fragments :: header"></header>
+<div th:replace="fragments :: recipes-page-header"></div>
 
 <table  class="table table-striped">
     <thead>
     <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Contact Email</th>
-        <th>Type</th>
+        <th>Recipe Name</th>
     </tr>
     </thead>
     <tr th:each="recipe : ${recipes}">
-        <td th:text="${recipe.id}"></td>
-        <td th:text="${recipe.name}"></td>
-        <td th:text="${recipe.description}"></td>
-        <td th:text="${recipe.contactEmail}"></td>
-        <td th:text="${recipe.type}"></td>
+        <td><a th:href="'/recipes/detail?recipeId=' + ${recipe.id}" th:text="${recipe.name}"></a></td>
     </tr>
 </table>
 

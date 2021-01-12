@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns="http://www.w3.org/1999/html">
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
 <body class="container">
+<div th:replace="fragments :: recipes-page-header"></div>
 
-<header th:replace="fragments :: header"></header>
 <form method="post">
 
     <th:block th:each="recipe : ${recipes}">
@@ -14,7 +14,6 @@
             </label>
         </div>
     </th:block>
-
 
     <input type="submit" value="Delete" class="btn btn-danger">
 </form>

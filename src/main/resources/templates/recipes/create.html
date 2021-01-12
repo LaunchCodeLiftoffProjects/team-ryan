@@ -2,46 +2,40 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
 <body class="container">
+<div th:replace="fragments :: recipes-page-header"></div>
 
-<header th:replace="fragments :: header"></header>
-
-<form method="post" action="/recipes/create">
+<form method="post">
     <div class="form-group">
         <label>Name
             <input th:field="${recipe.name}" class="form-control">
         </label>
         <p class="error" th:errors="${recipe.name}"></p>
     </div>
-
     <div class="form-group">
         <label>Description
-            <input th:field="${recipe.description}" class="form-control">
+            <input th:field="${recipe.recipeDetails.description}" class="form-control">
         </label>
-        <p class="error" th:errors="${recipe.description}"></p>
+        <p class="error" th:errors="${recipe.recipeDetails.description}"></p>
     </div>
-
     <div class="form-group">
         <label>Contact Email
-            <input th:field="${recipe.contactEmail}" class="form-control">
+            <input th:field="${recipe.recipeDetails.contactEmail}" class="form-control">
         </label>
-        <p class="error" th:errors="${recipe.contactEmail}"></p>
+        <p class="error" th:errors="${recipe.recipeDetails.contactEmail}"></p>
     </div>
-
     <div class="form-group">
-        <label>Type
-            <select th:field="${recipe.type}">
-                <option th:each="type : ${types}"
-                        th:value="${type}"
-                        th:text="${type.displayName}"></option>
+        <label>Category
+            <select th:field="${recipe.recipeCategory}">
+                <option th:each="recipeCategory : ${categories}"
+                        th:value="${recipeCategory.id}"
+                        th:text="${recipeCategory.name}"></option>
             </select>
+            <p class="error" th:errors="${recipe.recipeCategory}"></p>
         </label>
-        <p class="error" th:errors="${recipe.contactEmail}"></p>
     </div>
-
     <div class="form-group">
         <input type="submit" value="Create" class="btn btn-success">
     </div>
-
 </form>
 </body>
 </html>
