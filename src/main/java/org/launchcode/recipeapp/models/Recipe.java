@@ -1,37 +1,40 @@
 package org.launchcode.recipeapp.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.validation.constraints.Email;
+import org.launchcode.recipeapp.AbstractEntity;
+
+import javax.persistence.*;
+import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.Objects;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-public class Recipe {
-    @Id
-    @GeneratedValue
-    private int id;
+public class Recipe extends AbstractEntity {
 
     @NotBlank(message ="Name is required")
     @Size(min = 3, max =50, message = "Name must be between 3 and 50 characters")
     private String name;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @Valid
+    @NotNull
+    private RecipeDetails recipeDetails;
+
     @Size(max = 500, message = "Description too long!")
     private String description;
 
-    @NotBlank(message ="Email is required")
-    @Email(message = "Invalid Email. Try again.")
-    private String contactEmail;
+    @ManyToOne
+    @NotNull(message ="Category is required")
+    private RecipeCategory recipeCategory;
 
-private RecipeType type;
+    @ManyToMany
+    private final List<Tag> tags = new ArrayList<>();
 
-    public Recipe(String name, String description, String contactEmail, RecipeType type) {
+    public Recipe(String name, RecipeCategory recipeCategory) {
         this.name = name;
-        this.description = description;
-        this.contactEmail = contactEmail;
-        this.type = type;
+        this.recipeCategory = recipeCategory;
     }
 
     public Recipe() { }
@@ -44,53 +47,32 @@ private RecipeType type;
         this.name = name;
     }
 
-    public String getDescription() {
-        return description;
+    public RecipeDetails getRecipeDetails() {
+        return recipeDetails;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setRecipeDetails(RecipeDetails recipeDetails) {
+        this.recipeDetails = recipeDetails;
     }
 
-    public String getContactEmail() {
-        return contactEmail;
+    public RecipeCategory getRecipeCategory() {
+        return recipeCategory;
     }
 
-    public void setContactEmail(String contactEmail) {
-        this.contactEmail = contactEmail;
+    public void setRecipeCategory(RecipeCategory recipeCategory) {
+        this.recipeCategory = recipeCategory;
     }
 
-    public RecipeType getType() {
-        return type;
+    public List<Tag> getTags() {
+        return tags;
     }
 
-    public void setType(RecipeType type) {
-        this.type = type;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public Recipe(String description) {
-        this.description = description;
+    public void addTag(Tag tag){
+        this.tags.add(tag);
     }
 
     @Override
     public String toString() {
         return name;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Recipe event = (Recipe) o;
-        return id == event.id;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
     }
 }

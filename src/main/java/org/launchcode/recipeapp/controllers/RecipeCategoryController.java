@@ -19,27 +19,27 @@ public class RecipeCategoryController {
     @Autowired
     private RecipeCategoryRepository recipeCategoryRepository;
 
-    @GetMapping("")
-    public String displayAllRecipesCategories(Model model){
-        model.addAttribute("title", "All Category");
-        model.addAttribute("recipeCategories", recipeCategoryRepository.findAll());
+    @GetMapping
+    public String displayAllCategories(Model model){
+        model.addAttribute("title", "All Categories");
+        model.addAttribute("categories", recipeCategoryRepository.findAll());
         return "recipeCategories/index";
     }
 
     @GetMapping("create")
-    public String displayCreateRecipeCategoryForm(Model model){
+    public String renderCreateRecipeCategoryForm(Model model){
         model.addAttribute("title", "Create Category");
         model.addAttribute(new RecipeCategory());
         return "recipeCategories/create";
     }
     @PostMapping("create")
-    public String processCreateRecipeCategoryForm(@ModelAttribute("category") @Valid RecipeCategory newCategory, Errors errors, Model model) {
+    public String processCreateRecipeCategoryForm(@Valid @ModelAttribute RecipeCategory recipeCategory, Errors errors, Model model) {
         if (errors.hasErrors()) {
             model.addAttribute("title", "Create Category");
-            model.addAttribute("category", newCategory);
+            model.addAttribute(new RecipeCategory());
             return "recipeCategories/create";
         }
-        recipeCategoryRepository.save(newCategory);
+        recipeCategoryRepository.save(recipeCategory);
 return "redirect:";
     }
 }
