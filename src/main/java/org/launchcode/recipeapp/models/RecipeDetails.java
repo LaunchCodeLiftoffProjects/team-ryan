@@ -1,6 +1,6 @@
 package org.launchcode.recipeapp.models;
 
-import org.dom4j.tree.AbstractEntity;
+import org.launchcode.recipeapp.AbstractEntity;
 
 import javax.persistence.Entity;
 import javax.validation.constraints.Email;

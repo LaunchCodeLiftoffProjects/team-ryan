@@ -1,11 +1,12 @@
 package org.launchcode.recipeapp.controllers;
 
-import org.aspectj.apache.bcel.generic.Tag;
+
 import org.launchcode.recipeapp.data.RecipeCategoryRepository;
 import org.launchcode.recipeapp.data.RecipeRepository;
 import org.launchcode.recipeapp.data.TagRepository;
 import org.launchcode.recipeapp.models.Recipe;
 import org.launchcode.recipeapp.models.RecipeCategory;
+import org.launchcode.recipeapp.models.Tag;
 import org.launchcode.recipeapp.models.dto.RecipeTagDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -71,8 +72,8 @@ public class RecipeController {
         return "recipes/delete";
     }
     @PostMapping("delete")
-    public String processDeleteRecipesForm(@RequestParam (required = false) int[] recipeIDs){
-        if(recipeIDs != null) {
+    public String processDeleteRecipesForm(@RequestParam (required = false) int[] recipeIds){
+        if(recipeIds != null) {
             for (int id : recipeIds) {
                recipeRepository.deleteById(id);
             }
