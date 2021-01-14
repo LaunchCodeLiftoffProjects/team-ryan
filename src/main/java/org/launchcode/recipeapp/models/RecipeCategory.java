@@ -1,3 +1,4 @@
+/*
 package org.launchcode.recipeapp.models;
 
 import org.launchcode.recipeapp.AbstractEntity;
@@ -39,3 +40,4 @@ public class RecipeCategory  extends AbstractEntity {
     }
 
 }
+*/

@@ -20,8 +20,8 @@
     </thead>
     <tr th:each="ingredient : ${ingredients}">
         <td th:text="${ingredient.name}"></td>
-        <td th:text="${ingredient.category.displayName}"></td>
-        <td th:text="${ingredient.toList.displayName}"></td>
+        <td th:text="${ingredient.category}"></td>
+        <td th:text="${ingredient.toList}"></td>
     </tr>
 </table>
 </div>

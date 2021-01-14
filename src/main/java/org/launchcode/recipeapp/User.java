@@ -3,31 +3,37 @@ package org.launchcode.recipeapp;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
 @Entity
 public class User extends AbstractEntity {
 
-        @NotNull
-        private String username;
+    @Id
+    @GeneratedValue
+    private int id;
 
-        @NotNull
-        private String pwHash;
+    @NotNull
+    private String username;
 
-        private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+    @NotNull
+    private String pwHash;
 
-        public User() {}
+    private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
-        public User(String username, String password) {
-            this.username = username;
-            this.pwHash = encoder.encode(password);
-        }
+    public User() {}
 
-        public String getUsername() {
-            return username;
-        }
+    public User(String username, String password) {
+        this.username = username;
+        this.pwHash = encoder.encode(password);
+    }
 
-        public boolean isMatchingPassword(String password){
-            return encoder.matches(password,pwHash);
-        }
+    public String getUsername() {
+        return username;
+    }
+
+    public boolean isMatchingPassword(String password){
+        return encoder.matches(password,pwHash);
+    }
     }
