@@ -1,30 +1,31 @@
-async function start() {
-const response = await fetch("https://api.spoonacular.com/recipes/complexSearch?apiKey=3057efc6229646c8b0bda8fd922322a6&includeNutrition=true&cusine=true")
-//("https://api.spoonacular.com/recipes/716429/information?apiKey=3057efc6229646c8b0bda8fd922322a6&includeNutrition=true.")
-const data = await response.json()
-console.log(data)
-//returns title
-console.log(data.results[0].title);
-//returns image
-console.log(data.results[0].image)
-//need to return type of cuisine
-//may need to change parameter once added to other files
-createRecipeList(data)
-}
+console.log("javascript connected");
 
-start()
-function createRecipeList(recipeList){
-  document.getElementById("recipe").innerHTML = `
-  <select>
-      <option>Choose a Dish</option>
-      ${Object.keys(recipeList).map(function(recipe){
-        //modify to table?
-        return `<option>${recipe[0[0["title"]]]}</option>`
-        //removes commas
-      })
-      //.join('')
-      }
-    </select>
-  `
+console.log("javascript connected");
 
-}
+//window.addEventListener("load", function(){
+//    let json = [];
+//    var searchTerm = document.getElementById("searchTerm").toString();
+//    var apiKey = '3057efc6229646c8b0bda8fd922322a6';
+//    var api = 'https://api.spoonacular.com/recipes/complexSearch?apiKey=' + apiKey + '&includeIngredients=' + searchTerm;
+//
+//    console.log(api);
+//    console.log(searchTerm);
+//
+//    fetch(api).then(function(response){
+//      response.json().then(function(json){
+//        console.log(json);
+//        const ingredientResults = document.getElementById("searchDiv");
+//        for(let i = 0; i < json["results"].length; i++){
+//          searchDiv.innerHTML += `
+//          <div class="col-lg-4 col-sm-12 col-md-6">
+//                    <div class="card">
+//                <img src=${json["results"][i]["image"]} height=250 class="card-img-top" alt="${json["results"][i]["title"]}">
+//                <div class="card-body">
+//                <h5 class="card-title">${json["results"][i]["title"]}</h5>
+//          `;
+//
+//        }
+//      });
+//    });
+//});
+
