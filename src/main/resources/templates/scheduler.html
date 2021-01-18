@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+
+<body>
+
+<div class="content">
+
+    <div th:replace="fragments :: page-header"></div>
+
+    <H1>Put your recipes in action!</H1>
+
+    <p>Drag your recipes to the day you'd like make it!</p>
+
+    <div class="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+    <div class="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+    <div class="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+    <div class="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+    <div class="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+    <div class="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+    <div class="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+    <br>
+    <img id="drag1" th:src="@{images/CHEFU3.png}" draggable="true" ondragstart="drag(event)" width="336" height="69">
+
+</div>
+
+<div th:replace="fragments :: footer" class="short-footer"></div>
+
+</body>
+</html>
