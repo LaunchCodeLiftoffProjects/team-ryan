@@ -123,6 +123,9 @@ ul li:hover{
   height: 70px;
   padding: 10px;
   border: 1px solid #aaaaaa;
+  border-radius: 4px;
+  font-weight: bold;
+  margin: 10px;
 }
 
 .footer img{

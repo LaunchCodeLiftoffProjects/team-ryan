@@ -12,14 +12,21 @@
 
     <p>Drag your recipes to the day you'd like make it!</p>
 
-    <div class="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-    <div class="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-    <div class="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-    <div class="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-    <div class="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-    <div class="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-    <div class="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+    <div class="div1" ondrop="drop(event)" ondragover="allowDrop(event)">Sunday</div>
+    <div class="div1" ondrop="drop(event)" ondragover="allowDrop(event)">Monday</div>
+    <div class="div1" ondrop="drop(event)" ondragover="allowDrop(event)">Tuesday</div>
+    <div class="div1" ondrop="drop(event)" ondragover="allowDrop(event)">Wednesday</div>
+    <div class="div1" ondrop="drop(event)" ondragover="allowDrop(event)">Thursday</div>
+    <div class="div1" ondrop="drop(event)" ondragover="allowDrop(event)">Friday</div>
+    <div class="div1" ondrop="drop(event)" ondragover="allowDrop(event)">Saturday</div>
     <br>
+    <th:block th:each="ingredient : ${ingredients}">
+        <div class="form-group">
+            <label>
+                <span th:text="${ingredient.name}" draggable="true"></span>
+            </label>
+        </div>
+    </th:block>
     <img id="drag1" th:src="@{images/CHEFU3.png}" draggable="true" ondragstart="drag(event)" width="336" height="69">
 
 </div>
