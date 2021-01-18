@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http//www.thymeleaf.org">
+<head th:replace="fragments :: head"></head>
+
+<body>
+
+<div class="content">
+
+    <div th:replace="fragments :: page-header"></div>
+
+    <header th:replace="fragments :: header"></header>
+
+<h1>Search by Ingredient</h1>
+    <div id="searchDiv">
+        <form method="post" action="/search/index" class="form form-inline ml-auto">
+            <button id="searchIngredient" class="button" type="submit">SEARCH</button>
+            <input id="ingredientSearch" class="form form-control" type="text" name="ingredientSearch" placeholder="Search by Ingredient">
+        </form>
+    </div>
+
+
+<!--    <script src="../static/javascript/api.js"></script>-->
+</div>
+
+<div th:replace="fragments :: footer" class="short-footer"></div>
+
+    <script>
+   console.log("javascript connected");
+
+window.addEventListener("load", function(){
+    let json = [];
+    var searchTerm = 'tomato';
+    //document.getElementById("searchTerm").toString();
+    var apiKey = '3057efc6229646c8b0bda8fd922322a6';
+    var api = 'https://api.spoonacular.com/recipes/complexSearch?apiKey=' + apiKey + '&includeIngredients=' + searchTerm;
+
+    console.log(api);
+    console.log(searchTerm);
+
+    fetch(api).then(function(response){
+      response.json().then(function(json){
+        console.log(json);
+        const ingredientResults = document.getElementById("searchDiv");
+        for(let i = 0; i < json["results"].length; i++){
+          searchDiv.innerHTML += `
+          <div class="col-lg-4 col-sm-12 col-md-6">
+                    <div class="card">
+                <img src=${json["results"][i]["image"]} height=250 class="card-img-top" alt="${json["results"][i]["title"]}">
+                <div class="card-body">
+                <h5 class="card-title">${json["results"][i]["title"]}</h5>
+          `;
+
+        }
+      });
+    });
+
+});
+
+
+
+<!--console.log("javascript connected");-->
+<!--window.addEventListener("load", function(){-->
+<!--    let json = [];-->
+<!--    //storing searchTerm as static variable because event handler isn't working-->
+<!--    var searchTerm = 'tomato';-->
+<!--    //commented out grabbing user input-->
+<!--    //document.getElementById("ingredientSearch").toString();-->
+<!--    var apiKey = '3057efc6229646c8b0bda8fd922322a6';-->
+<!--    var api = 'https://api.spoonacular.com/recipes/complexSearch?apiKey=' + apiKey + '&includeIngredients=' + searchTerm;-->
+<!--    //modified search term to account for static variable-->
+<!--    //"'"+ searchTerm + "'";-->
+
+<!--//tried to wrap apiCall in function, but event handler isn't working-->
+<!--//function apiCall(){-->
+
+<!--    fetch(api).then(function(response){-->
+<!--      response.json().then(function(json){-->
+<!--        console.log(json);-->
+<!--        const ingredientResults = document.getElementById("searchDiv");-->
+<!--        for(let i = 0; i < json["results"].length; i++){-->
+<!--          searchDiv.innerHTML += `-->
+<!--          <div class="col-lg-4 col-sm-12 col-md-6">-->
+<!--                    <div class="card">-->
+<!--                <img src=${json["results"][i]["image"]} height=250 class="card-img-top" alt="${json["results"][i]["title"]}">-->
+<!--                <div class="card-body">-->
+<!--                <h5 class="card-title">${json["results"][i]["title"]}</h5>-->
+<!--          `;-->
+
+<!--        }-->
+<!--      });-->
+<!--    });-->
+<!--    //};-->
+<!--//event handler isn't working-->
+<!--//document.getElementById("searchIngredient").addEventListener("click", apiCall() {-->
+
+
+<!--    console.log(api);-->
+<!--    console.log(searchIngredient);-->
+
+<!--}) ;-->
+    </script>
+</body>
+</html>
+
