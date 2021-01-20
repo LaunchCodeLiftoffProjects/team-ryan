@@ -1,9 +1,9 @@
 package org.launchcode.recipeapp.data;
 
-import org.launchcode.recipeapp.models.Ingredient;
+import org.launchcode.recipeapp.models.Recipe;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface IngredientRepository extends CrudRepository<Ingredient, Integer> {
+public interface RecipeRepository extends CrudRepository<Recipe, Integer> {
 }
