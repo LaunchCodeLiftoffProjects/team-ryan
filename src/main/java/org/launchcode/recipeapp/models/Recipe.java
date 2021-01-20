@@ -25,9 +25,9 @@ public class Recipe extends AbstractEntity {
     @ManyToOne
     @NotNull(message ="Category is required")
     private RecipeCategory recipeCategory;
-
-    @ManyToMany
-    private final List<Tag> tags = new ArrayList<>();
+//
+//    @ManyToMany
+//    private final List<Tag> tags = new ArrayList<>();
 
     public Recipe(String name, RecipeCategory recipeCategory) {
         this.name = name;
@@ -60,13 +60,13 @@ public class Recipe extends AbstractEntity {
         this.recipeCategory = recipeCategory;
     }
 
-    public List<Tag> getTags() {
-        return tags;
-    }
+//    public List<Tag> getTags() {
+//        return tags;
+//    }
 
-    public void addTag(Tag tag){
-        this.tags.add(tag);
-    }
+//    public void addTag(Tag tag){
+//        this.tags.add(tag);
+//    }
 
     @Override
     public String toString() {

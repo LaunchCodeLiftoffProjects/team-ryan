@@ -3,11 +3,11 @@ package org.launchcode.recipeapp.controllers;
 
 import org.launchcode.recipeapp.data.RecipeCategoryRepository;
 import org.launchcode.recipeapp.data.RecipeRepository;
-import org.launchcode.recipeapp.data.TagRepository;
+//import org.launchcode.recipeapp.data.TagRepository;
 import org.launchcode.recipeapp.models.Recipe;
 import org.launchcode.recipeapp.models.RecipeCategory;
-import org.launchcode.recipeapp.models.Tag;
-import org.launchcode.recipeapp.models.dto.RecipeTagDTO;
+//import org.launchcode.recipeapp.models.Tag;
+//import org.launchcode.recipeapp.models.dto.RecipeTagDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,8 +27,8 @@ public class RecipeController {
     @Autowired
     private RecipeCategoryRepository recipeCategoryRepository;
 
-    @Autowired
-    private TagRepository tagRepository;
+//    @Autowired
+//    private TagRepository tagRepository;
 
     @GetMapping
     public String displayRecipes(@RequestParam(required = false) Integer categoryId, Model model){
@@ -92,39 +92,39 @@ public class RecipeController {
             Recipe recipe = result.get();
             model.addAttribute("title", recipe.getName() + " Details");
             model.addAttribute("recipe", recipe);
-            model.addAttribute("tags", recipe.getTags());
+//            model.addAttribute("tags", recipe.getTags());
         }
         return "recipes/detail";
     }
 
-    @GetMapping("add-tag")
-    public String displayAddTagForm(@RequestParam Integer recipeId, Model model){
-        Optional<Recipe> result = recipeRepository.findById(recipeId);
-        Recipe recipe = result.get();
-        model.addAttribute("title", "Add Tag to: " + recipe.getName());
-        model.addAttribute("tags", tagRepository.findAll());
-        RecipeTagDTO recipeTag = new RecipeTagDTO();
-        recipeTag.setRecipe(recipe);
-        model.addAttribute("recipeTag", recipeTag);
-        return "recipes/add-tag.html";
-    }
-
-    @PostMapping("add-tag")
-    public String processAddTagForm(@ModelAttribute @Valid RecipeTagDTO recipeTag,
-                                    Errors errors,
-                                    Model model){
-
-        if (!errors.hasErrors()) {
-            Recipe recipe = recipeTag.getRecipe();
-            Tag tag = recipeTag.getTag();
-            if (!recipe.getTags().contains(tag)){
-                recipe.addTag(tag);
-                recipeRepository.save(recipe);
-            }
-            return "redirect:detail?recipeId=" + recipe.getId();
-        }
-
-        return "redirect:add-tag";
-    }
+//    @GetMapping("add-tag")
+//    public String displayAddTagForm(@RequestParam Integer recipeId, Model model){
+//        Optional<Recipe> result = recipeRepository.findById(recipeId);
+//        Recipe recipe = result.get();
+//        model.addAttribute("title", "Add Tag to: " + recipe.getName());
+//        model.addAttribute("tags", tagRepository.findAll());
+//        RecipeTagDTO recipeTag = new RecipeTagDTO();
+//        recipeTag.setRecipe(recipe);
+//        model.addAttribute("recipeTag", recipeTag);
+//        return "recipes/add-tag.html";
+//    }
+//
+//    @PostMapping("add-tag")
+//    public String processAddTagForm(@ModelAttribute @Valid RecipeTagDTO recipeTag,
+//                                    Errors errors,
+//                                    Model model){
+//
+//        if (!errors.hasErrors()) {
+//            Recipe recipe = recipeTag.getRecipe();
+//            Tag tag = recipeTag.getTag();
+//            if (!recipe.getTags().contains(tag)){
+//                recipe.addTag(tag);
+//                recipeRepository.save(recipe);
+//            }
+//            return "redirect:detail?recipeId=" + recipe.getId();
+//        }
+//
+//        return "redirect:add-tag";
+//    }
 
 }
