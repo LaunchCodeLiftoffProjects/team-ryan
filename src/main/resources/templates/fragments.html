@@ -48,6 +48,19 @@
     </ul>
 </nav>
 
+<header th:fragment="recipes-page-header">
+    <h1 th:text="${title}">Creating Recipe</h1>
+    <ul class="nav">
+        <li class="nav-item"><a class="nav-link" href="/recipes">All Recipes</a></li>
+        <li class="nav-item"><a class="nav-link" href="/recipes/create">Create Recipe</a></li>
+        <li class="nav-item"><a class="nav-link" href="/recipes/delete">Delete Recipe</a></li>
+        <li class="nav-item"><a class="nav-link" href="/recipeCategories">All Categories</a></li>
+        <li class="nav-item"><a class="nav-link" href="/recipeCategories/create">Create Category</a></li>
+        <li class="nav-item"><a class="nav-link" href="/tags">All Tags</a></li>
+        <li class="nav-item"><a class="nav-link" href="/tags/create">Create Tag</a></li>
+    </ul>
+</header>
+
 <footer th:fragment="footer" class="footer site-footer">
     <div class="container footer-custom">
         <div class="row">
@@ -87,5 +100,3 @@
 
 </body>
 </html>
-
-

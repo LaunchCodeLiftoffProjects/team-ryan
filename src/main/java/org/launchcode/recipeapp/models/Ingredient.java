@@ -21,12 +21,10 @@ public class Ingredient {
     private IngredientCategory category;
     private IngredientToList toList;
 
-
     public Ingredient(String name, String description, IngredientCategory category, IngredientToList toList) {
         this.name = name;
         this.category = category;
         this.toList = toList;
-
     }
 
     public Ingredient() { }
