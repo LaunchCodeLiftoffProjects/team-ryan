@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+
+<body>
+
+<div class="content">
+    <div th:replace="fragments :: page-header"></div>
+    <header th:replace="fragments :: header"></header>
+
+        <th:block th:each="user : ${users}">
+            <th:block th:each="recipe : ${user.recipes}">
+
+            </th:block>
+        </th:block>
+        <input type="submit" value="SUBSCRIBE" class="button btn-danger">
+</div>
+
+<div th:replace="fragments :: footer" class="short-footer"></div>
+
+</body>
+</html>

@@ -1,17 +1,23 @@
 package org.launchcode.recipeapp.models;
 
 import org.launchcode.recipeapp.AbstractEntity;
+import org.launchcode.recipeapp.User;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 public class Recipe extends AbstractEntity {
+
+    @ManyToOne
+    @NotNull(message = "account required")
+    private User user;
 
     @NotBlank(message ="Name is required")
     @Size(min = 3, max =50, message = "Name must be between 3 and 50 characters")
