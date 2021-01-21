@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+
+<body>
+
+<div class="content">
+    <div th:replace="fragments :: page-header"></div>
+    <header th:replace="fragments :: header"></header>
+
+    <form class="form-custom" method="post">
+
+        <th:block th:each="user : ${users}">
+            <div class="form-group">
+                <label>
+                    <span th:text="${user.username}"></span>
+                    <input type="checkbox" name="userIds" th:value="${user.id}" class="form-control">
+                </label>
+            </div>
+        </th:block>
+        <input type="submit" value="SUBSCRIBE" class="button btn-danger">
+    </form>
+</div>
+
+<div th:replace="fragments :: footer" class="short-footer"></div>
+
+</body>
+</html>
