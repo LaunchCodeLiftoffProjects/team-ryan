@@ -104,8 +104,9 @@ ul li:hover{
 }
 
 .card img {
- width: 287px;
- height: 250px;
+ max-width: 100%;
+ height: auto;
+ overflow: hidden;
  border-radius: 4px;
 }
 
