@@ -1,7 +1,7 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<html>
 <head th:replace="fragments :: head"></head>
-
 <body>
 
 <div class="content">
@@ -9,29 +9,48 @@
     <div th:replace="fragments :: page-header"></div>
 
     <H1>Put your recipes in action!</H1>
-
     <p>Drag your recipes to the day you'd like make it!</p>
-
-    <div class="div1" ondrop="drop(event)" ondragover="allowDrop(event)">Sunday</div>
-    <div class="div1" ondrop="drop(event)" ondragover="allowDrop(event)">Monday</div>
-    <div class="div1" ondrop="drop(event)" ondragover="allowDrop(event)">Tuesday</div>
-    <div class="div1" ondrop="drop(event)" ondragover="allowDrop(event)">Wednesday</div>
-    <div class="div1" ondrop="drop(event)" ondragover="allowDrop(event)">Thursday</div>
-    <div class="div1" ondrop="drop(event)" ondragover="allowDrop(event)">Friday</div>
-    <div class="div1" ondrop="drop(event)" ondragover="allowDrop(event)">Saturday</div>
     <br>
-    <th:block th:each="ingredient : ${ingredients}">
-        <div class="form-group">
-            <label>
-                <span th:text="${ingredient.name}" draggable="true"></span>
-            </label>
+
+    <hr class="my-3"/>
+
+    <div class="container">
+
+        <div class="fixed">
+            <th:block th:each="recipe : ${recipes}">
+                <div class="form-group" id="drag2" draggable="true" ondragstart="drag(event)">
+                    <label>
+                        <span th:text="${recipe.name}" ></span>
+                    </label>
+                </div>
+            </th:block>
         </div>
-    </th:block>
-    <img id="drag1" th:src="@{images/CHEFU3.png}" draggable="true" ondragstart="drag(event)" width="336" height="69">
+
+        <div class="flex-item">
+            <div id="divday_1" ondrop="drop(event)" ondragover="allowDrop(event)"><h4>SUNDAY</h4></div>
+            <div id="divday_2" ondrop="drop(event)" ondragover="allowDrop(event)"><h4>MONDAY</h4></div>
+            <div id="divday_3" ondrop="drop(event)" ondragover="allowDrop(event)"><h4>TUESDAY</h4></div>
+            <div id="divday_4" ondrop="drop(event)" ondragover="allowDrop(event)"><h4>WEDNESDAY</h4></div>
+            <div id="divday_5" ondrop="drop(event)" ondragover="allowDrop(event)"><h4>THURSDAY</h4></div>
+            <div id="divday_6" ondrop="drop(event)" ondragover="allowDrop(event)"><h4>FRIDAY</h4></div>
+            <div id="divday_7" ondrop="drop(event)" ondragover="allowDrop(event)"><h4>SATURDAY</h4></div>
+            <br>
+            <img id="drag1" th:src="@{images/CHEFU3.png}" draggable="true" ondragstart="drag(event)" width="336" height="69">
+            <br>
+        </div>
+
+    </div>
 
 </div>
-
 <div th:replace="fragments :: footer" class="short-footer"></div>
-
 </body>
 </html>
+
+
+
+
+
+
+
+
+
