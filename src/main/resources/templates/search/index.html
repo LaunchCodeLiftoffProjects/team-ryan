@@ -10,66 +10,72 @@
 
     <header th:replace="fragments :: header"></header>
 
-<h1>Search by Ingredient</h1>
-    <div id="searchDiv">
-        <form method="post" action="/search/index" class="form form-inline ml-auto">
-            <button id="searchIngredient" class="button" type="submit">SEARCH</button>
-            <input id="ingredientSearch" class="form form-control" type="text" name="ingredientSearch" placeholder="Search by Ingredient">
-        </form>
+    <div class="content">
+
+        <h1>Search by Ingredient</h1>
+        <div id="searchDiv">
+            <!-- <form method="post" action="/search/index" class="form form-inline ml-auto"> -->
+            <button name="searchByIngredient" id="searchByIngredient" class="button" type="submit">SEARCH</button>
+            <input name="ingredientToSearch" id="ingredientToSearch" class="form form-control" type='text' placeholder="Search by Ingredient">
+            <!-- </form> -->
+        </div>
+
+        <div id="results">
+        </div>
+
     </div>
-
-
 <!--    <script src="../static/javascript/api.js"></script>-->
 </div>
 
 <div th:replace="fragments :: footer" class="short-footer"></div>
 
     <script>
-   console.log("javascript connected");
+console.log("javascript connected");
 
-<!--window.addEventListener("load", function(){-->
-var searchIngredient = document.getElementById("searchIngredient");
-
-searchIngredient.addEventListener('click', function (e){
-  var searchTerm = document.getElementById("ingredientSearch").value;
-
-
-
-if(typeof(searchTerm) != 'string') {
-    e.preventDefault();
-    console.log("if statement " + searchTerm);
-    } else {
-      (console.log("else statement " + searchTerm));
-      apiCall();
-
+async function search(term) {
+  // building our url
+  var apiKey = '3057efc6229646c8b0bda8fd922322a6';
+  var api = 'https://api.spoonacular.com/recipes/complexSearch?apiKey=' + apiKey + '&instructionsRequired=true&includeIngredients=' + searchTerm;
+  // retrieving data
+  const response = await fetch(api);
+  const data = await response.json();
+  // using data
+  console.log(api);
+  console.log(data);
+  displayResults(data);
 }
-})
 
-function apiCall() {
-    let json = [];
-    var apiKey = '3057efc6229646c8b0bda8fd922322a6';
-    var api = 'https://api.spoonacular.com/recipes/complexSearch?apiKey=' + apiKey + '&includeIngredients=' + searchTerm;
+searchByIngredient.addEventListener('click', function (e) {
+  var searchTerm = document.getElementById("ingredientToSearch").value;
 
-    console.log(api);
-    console.log(searchTerm);
-    fetch(api).then(function(response){
-      response.json().then(function(json){
-        console.log(json);
-        const ingredientResults = document.getElementById("searchDiv");
-        for(let i = 0; i < json["results"].length; i++){
-          searchDiv.innerHTML += `
-          <div class="col-lg-4 col-sm-12 col-md-6">
-                    <div class="card">
-                <img src=${json["results"][i]["image"]} height=250 class="card-img-top" alt="${json["results"][i]["title"]}">
-                <div class="card-body">
-                <h5 class="card-title">${json["results"][i]["title"]}</h5>
-          `;
+  if(typeof(searchTerm) != 'string') {
+      e.preventDefault();
+      console.log("if statement " + searchTerm);
 
-        }
-      });
-    });
+  } else {
+    //grabbing user input
+    (console.log("else statement " + searchTerm));
+    search(searchTerm);
+  }
+});
 
-};
+function displayResults (results) {
+  const displayData = document.getElementById("results");
+  var apiKey = '3057efc6229646c8b0bda8fd922322a6';
+  var apiRecipeId = ((results.results[i].id).toString());
+  for(let i = 0; i < results.results.length; i++) {
+<!--    console.log('https://api.spoonacular.com/recipes/' + ((results.results[i].id).toString()) + '/analyzedInstructions?apiKey=' + apiKey);-->
+ displayData.innerHTML += `
+    <div>
+      <a href='https://api.spoonacular.com/recipes/' + ${((results.results[i].id).toString())} + '/analyzedInstructions?apiKey=' + ${apiKey}>
+      <p> ${results.results[i].title} </p>
+        <img src="${results.results[i].image}"/>
+
+      </a>
+    </div>
+  `;
+}
+}
 
     </script>
 </body>
