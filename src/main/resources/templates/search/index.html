@@ -32,7 +32,7 @@
     <script>
 console.log("javascript connected");
 
-async function search(term) {
+async function search(searchTerm) {
   // building our url
   var apiKey = '3057efc6229646c8b0bda8fd922322a6';
   var api = 'https://api.spoonacular.com/recipes/complexSearch?apiKey=' + apiKey + '&instructionsRequired=true&includeIngredients=' + searchTerm;
@@ -61,17 +61,15 @@ searchByIngredient.addEventListener('click', function (e) {
 
 function displayResults (results) {
   const displayData = document.getElementById("results");
-  var apiKey = '3057efc6229646c8b0bda8fd922322a6';
-  var apiRecipeId = ((results.results[i].id).toString());
   for(let i = 0; i < results.results.length; i++) {
+  var apiRecipeId = ((results.results[i].id).toString());
 <!--    console.log('https://api.spoonacular.com/recipes/' + ((results.results[i].id).toString()) + '/analyzedInstructions?apiKey=' + apiKey);-->
  displayData.innerHTML += `
     <div>
-      <a href='https://api.spoonacular.com/recipes/' + ${((results.results[i].id).toString())} + '/analyzedInstructions?apiKey=' + ${apiKey}>
-      <p> ${results.results[i].title} </p>
+      <p>${results.results[i].title} </p>
         <img src="${results.results[i].image}"/>
 
-      </a>
+
     </div>
   `;
 }
