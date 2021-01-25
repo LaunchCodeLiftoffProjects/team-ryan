@@ -63,10 +63,10 @@ function displayResults (results) {
   const displayData = document.getElementById("results");
   for(let i = 0; i < results.results.length; i++) {
   var apiRecipeId = ((results.results[i].id).toString());
-<!--    console.log('https://api.spoonacular.com/recipes/' + ((results.results[i].id).toString()) + '/analyzedInstructions?apiKey=' + apiKey);-->
+console.log(apiRecipeId);
  displayData.innerHTML += `
     <div>
-      <p>${results.results[i].title} </p>
+      <a href="/recipes/external?id=${results.results[i].id}">${results.results[i].title} </a>
         <img src="${results.results[i].image}"/>
 
 

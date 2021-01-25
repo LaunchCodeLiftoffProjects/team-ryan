@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http//www.thymeleaf.org">
+<head th:replace="fragments :: head"></head>
+
+<body>
+
+<div class="content">
+
+    <div th:replace="fragments :: page-header"></div>
+
+    <header th:replace="fragments :: header"></header>
+
+    <div class="content">
+
+        <h1>Recipe</h1>
+        <div id="recipeSearchDiv">
+            <p th:text =${id}">Recipe ID</p>
+        </div>
+
+        <div id="recipeResults">
+        </div>
+
+    </div>
+    <!--    <script src="../static/javascript/api.js"></script>-->
+</div>
+
+<div th:replace="fragments :: footer" class="short-footer"></div>
+
+    <script>
+    </script>
+</body>
+</html>
+

@@ -1,6 +1,7 @@
 package org.launchcode.recipeapp.controllers;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
@@ -10,39 +11,31 @@ import org.springframework.web.bind.annotation.*;
 public class SearchController {
     //lives at /recipes/search
     @GetMapping("search")
-    public String renderSearchIndex(){
+    public String renderSearchIndex() {
         //renders search/index
         return "search/index";
     }
-//    lives at /recipes/search
-//    handles requests of the form /search + search term
-//    query param - id
 
-//    @GetMapping("search")
-//    //accepts both get and post requests, lives at recipes/search
-//    @RequestMapping(method = {RequestMethod.GET, RequestMethod.POST}, value = "search")
-//    public String searchWithQueryParam(@RequestParam String id) {
-//        return "Id is " + id;
-//    }
+    //controller to grab ID that lives at search/recipes?id=
+    //need to pass this value in from view
 
-    @GetMapping("recipes/search")
-    public String recipesWithQueryParam(@RequestParam String id ){
+    @GetMapping("recipes/external")
+    @ResponseBody
+    public String recipesWithQueryParam(@RequestParam String id, Model model) {
         //displays text on the page
-        return "search/recipes" + id;
+        model.addAttribute("id", id);
+        return "Id is " + id;
     }
 
-    //handles requests of the form /recipes/search
-//    @GetMapping("search")
-//    public String searchForm(){
-//        return
-//
-//    }
-//
-
-//    @GetMapping("recipes/fromAPI")
+//    @GetMapping("search/recipes")
 //    @ResponseBody
-//    public String grabAPIRecipeId(@RequestParam String id) {
-//        return "ID " + id;
+//    public String passIdToView(@RequestParam String id) {
+//        //displays text on the page
+//        return "search/recipes";
 //    }
 
 }
+
+
+
+
