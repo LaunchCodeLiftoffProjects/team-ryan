@@ -5,6 +5,7 @@ import org.launchcode.recipeapp.User;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -14,11 +15,12 @@ public class Shoppinglist {
     @GeneratedValue
     private int id;
 
+    @NotBlank(message ="Name is required")
+    @Size(min = 3, max =50, message = "Name must be between 3 and 50 characters")
+    private String name;
 
-    //@OneToMany(mappedBy = "shoppingList")
-    //private final List<Recipe> recipes = new ArrayList<>();
-
-
+    @OneToMany
+    private final List<Ingredient> ingredients = new ArrayList<>();
 
 
     public Shoppinglist(){}
@@ -27,7 +29,17 @@ public class Shoppinglist {
         return id;
     }
 
+    public String getName() {
+        return name;
+    }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<Ingredient> getIngredients() {
+        return ingredients;
+    }
 
     @Override
     public boolean equals(Object o) {

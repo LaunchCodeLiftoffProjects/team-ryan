@@ -1,23 +1,22 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
-<body class="container">
-<header th:replace="fragments :: header"></header>
 
-<table class="table table-striped">
+<body>
+
+<div class="content">
+<div th:replace="fragments :: page-header"></div>
+
+<table  class="table table-striped">
     <thead>
     <tr>
-        <th>Id</th>
+        <th>Shoppinglist Name</th>
     </tr>
-</thead>
-
-    <tr th:each="recipe : ${recipes}">
-        <td th:text="${recipe.name}"></td>
-        <td th:text="${recipe.description}"></td>
-        <td th:text="${recipe.contactEmail}"></td>
-        <td th:text="${recipe.type}"></td>
+    </thead>
+    <tr th:each="shoppinglist : ${shoppinglists}">
+        <td><a th:text="${shoppinglist.name}" th:href="'/shoppinglists?shoppinglistId=' + ${shoppinglist.id}"></a></td>
     </tr>
-
 </table>
+</div>
 </body>
 </html>
