@@ -62,8 +62,8 @@ public class ShoppinglistController {
             return "shoppinglist/add2";
         }
         System.out.println(shoppinglistId);
-        Optional<Shoppinglist> result = shoppinglistRepository.findById(Integer.parseInt("2"));
-        Optional<Ingredient> result2 = ingredientRepository.findById(Integer.parseInt("15"));
+        Optional<Shoppinglist> result = shoppinglistRepository.findById(Integer.parseInt(shoppinglistId));
+        Optional<Ingredient> result2 = ingredientRepository.findById(Integer.parseInt(ingredientId));
         result.get().getIngredients().add(result2.get());
         return "redirect:";
     }
