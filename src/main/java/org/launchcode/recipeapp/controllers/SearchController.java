@@ -23,7 +23,7 @@ public class SearchController {
     @ResponseBody
     public String recipesWithQueryParam(@RequestParam String id, Model model) {
         //displays text on the page
-        model.addAttribute("id", id);
+        model.addAttribute("apiRecipeId", id);
         return "Id is " + id;
     }
 
@@ -33,6 +33,8 @@ public class SearchController {
 //        //displays text on the page
 //        return "search/recipes";
 //    }
+
+
 
 }
 
