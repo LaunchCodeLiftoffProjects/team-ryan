@@ -1,33 +1,46 @@
 package org.launchcode.recipeapp;
 
+import org.launchcode.recipeapp.models.Recipe;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity
 public class User extends AbstractEntity {
 
-        @NotNull
-        private String username;
+    @OneToMany
+    @JoinColumn
+    public List<Recipe> recipes;
 
-        @NotNull
-        private String pwHash;
+    @ManyToMany
+    @JoinColumn
+    public List<User> subscribedUsers;
 
-        private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+    @NotNull
+    private String username;
 
-        public User() {}
+    @NotNull
+    private String pwHash;
 
-        public User(String username, String password) {
-            this.username = username;
-            this.pwHash = encoder.encode(password);
-        }
+    private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
-        public String getUsername() {
-            return username;
-        }
+    public User() {}
 
-        public boolean isMatchingPassword(String password){
-            return encoder.matches(password,pwHash);
-        }
+    public User(String username, String password) {
+        this.username = username;
+        this.pwHash = encoder.encode(password);
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public boolean isMatchingPassword(String password){
+        return encoder.matches(password,pwHash);
+    }
     }

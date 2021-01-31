@@ -3,10 +3,7 @@ package org.launchcode.recipeapp.models;
 import org.launchcode.recipeapp.AbstractEntity;
 import org.launchcode.recipeapp.User;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -17,6 +14,7 @@ public class Recipe extends AbstractEntity {
 
     @ManyToOne
     @NotNull(message = "account required")
+    @JoinColumn(name = "user_id")
     private User user;
 
     @NotBlank(message ="Name is required")

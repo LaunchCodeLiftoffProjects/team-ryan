@@ -1,8 +1,10 @@
 package org.launchcode.recipeapp.controllers;
 
+import org.launchcode.recipeapp.User;
 import org.launchcode.recipeapp.data.RecipeCategoryRepository;
 import org.launchcode.recipeapp.data.RecipeRepository;
 //import org.launchcode.recipeapp.data.TagRepository;
+import org.launchcode.recipeapp.data.UserRepository;
 import org.launchcode.recipeapp.models.Recipe;
 import org.launchcode.recipeapp.models.RecipeCategory;
 //import org.launchcode.recipeapp.models.Tag;
@@ -13,12 +15,17 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import java.util.Optional;
 
 @Controller
 @RequestMapping("recipes")
 public class RecipeController {
+
+    @Autowired
+    private UserRepository userRepository;
 
     @Autowired
     private RecipeRepository recipeRepository;
@@ -55,8 +62,9 @@ public class RecipeController {
         return "recipes/create";
     }
     @PostMapping("create")
-    public String processCreateRecipeForm(@ModelAttribute @Valid Recipe newRecipe, Errors errors, Model model){
-       if(errors.hasErrors()){
+    public String processCreateRecipeForm(@ModelAttribute @Valid Recipe newRecipe, @NotNull HttpSession session, Errors errors, Model model){
+        User currentUser = userRepository.findById(Integer.parseInt(session.getAttribute("user").toString())).get();
+        if(errors.hasErrors()){
            model.addAttribute("title", "Create Recipe");
            return "recipes/create";
        }

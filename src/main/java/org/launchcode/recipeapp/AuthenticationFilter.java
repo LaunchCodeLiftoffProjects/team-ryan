@@ -1,7 +1,7 @@
 package org.launchcode.recipeapp;
 
 import org.launchcode.recipeapp.controllers.AuthenticationController;
-import org.launchcode.recipeapp.models.data.UserRepository;
+import org.launchcode.recipeapp.data.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import javax.servlet.http.HttpServletRequest;

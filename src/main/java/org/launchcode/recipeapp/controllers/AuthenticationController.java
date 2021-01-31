@@ -1,7 +1,7 @@
 package org.launchcode.recipeapp.controllers;
 
 import org.launchcode.recipeapp.User;
-import org.launchcode.recipeapp.models.data.UserRepository;
+import org.launchcode.recipeapp.data.UserRepository;
 import org.launchcode.recipeapp.models.dto.LoginFormDTO;
 import org.launchcode.recipeapp.models.dto.RegisterFormDTO;
 import org.springframework.beans.factory.annotation.Autowired;
