@@ -8,12 +8,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-    <link th:href="@{/css/bootstrap.css}" rel="stylesheet" />
     <link th:href="@{/css/recipe.css}" rel="stylesheet" />
-    <script type="text/javascript" th:src="@{/js/bootstrap.js}"></script>
-    <style>
+    <link th:href="@{/fullcalendar/main.css}" rel='stylesheet' />
+    <script type="text/javascript" th:src="@{/fullcalendar/main.js}"></script>
+    <script type="text/javascript" th:src="@{/fullcalendar/draggable.js}"></script>
+<!--    <script type="text/javascript" th:src="@{/js/bootstrap.js}"></script>-->
 
-    </style>
     <script>
         function allowDrop(ev) {
           ev.preventDefault();
@@ -27,7 +27,48 @@
           ev.preventDefault();
           var data = ev.dataTransfer.getData("text");
           ev.target.appendChild(document.getElementById(data));
+
+          //when i dropped an element and if i made mistake, by clicking on element i remove it from dropbox --working on images but not on th data
+          var txt1 = document.getElementById(data);
+          txt1.onclick = function () {
+            document.getElementById(data).remove();
+            this.remove();
+          };
         }
+
+        window.saveAndDisplay = function() {
+          var result = document.getElementById('demo');
+          var list = document.getElementById('dropBox');
+          while (list.children.length > 0) {
+            result.appendChild(list.children[0]);
+          }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+          var calendarEl = document.getElementById('calendar');
+          var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth'
+          });
+          calendar.render();
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            let draggableEl = document.getElementById('mydraggable');
+            let calendarEl = document.getElementById('mycalendar');
+
+            let calendar = new Calendar(calendarEl, {
+                plugins: [ interactionPlugin ],
+                droppable: true
+            });
+
+            calendar.render();
+
+            new Draggable(draggableEl);
+<!--            new Draggable(containerEl, {-->
+<!--                itemSelector: '.item-class'-->
+<!--            });-->
+        });
+
     </script>
 </head>
 
@@ -84,21 +125,15 @@
             <div class="col-lg-3 col-sm-12 col-md-4">
                 <h6>MISCELLANEOUS</h6>
                 <a href="#">Term Of Use</a> <br>
-                <a href="#">Product Locator</a> <br>
-                <a href="#">Do Not Sell My Personal Information</a>
             </div>
             <div class="col-lg-3 col-sm-12 col-md-4">
                 <h6>HELP & SUPPORT</h6>
                 <a href="#">Contact Us</a> <br>
-                <a href="#">Advertise With Us</a> <br>
-                <a href="#">FAQ</a>
             </div>
             <div class="col-lg-3 col-sm-12 col-md-4">
                 <h6>GET TO KNOW MADSKR RECIPES</h6>
                 <a href="#">About Madskr Recipes</a> <br>
                 <a href="#">Terms and Conditions</a> <br>
-                <a href="#">Investor Relation</a>
-                <a href="#">policy Notice</a>
             </div>
             <div class="col-lg-3 col-sm-12 col-md-4">
                 <h6>Follow Us</h6>

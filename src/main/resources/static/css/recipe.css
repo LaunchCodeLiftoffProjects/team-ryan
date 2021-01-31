@@ -208,16 +208,6 @@ table {
  padding: 30px;
 }
 
-[id^='divday_']{
- width: 700px;
- height: 200px;
- padding: 10px;
- border: 1px solid #aaaaaa;
- border-radius: 4px;
- font-weight: bold;
- margin: 10px;
-}
-
 .container {
  display: flex;
 }

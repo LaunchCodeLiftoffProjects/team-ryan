@@ -12,16 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("schedule")
 public class SchedulerController {
 
-//    @Autowired
-//    private IngredientRepository ingredientRepository;
-//
-//    @GetMapping
-//    public String displayAllIngredients(Model model) {
-//        model.addAttribute("name", "All Ingredients");
-//        model.addAttribute("ingredients", ingredientRepository.findAll());
-//        return "scheduler";
-//    }
-
     @Autowired
     private RecipeRepository recipeRepository;
 
@@ -31,4 +21,10 @@ public class SchedulerController {
         model.addAttribute("recipes", recipeRepository.findAll());
         return "scheduler";
     }
+
+    @GetMapping("calendar")
+    public String index() {
+        return "test";
+    }
+
 }
