@@ -210,6 +210,7 @@ table {
 
 .container {
  display: flex;
+ padding-bottom: 100px;
 }
 
 .fixed {
@@ -225,5 +226,9 @@ h4 {
  font-size: 18px;
  color: #EF8331; /* Orange */
  font-weight: bold;
+}
+
+.my-3 {
+ padding: 20px
 }
 
