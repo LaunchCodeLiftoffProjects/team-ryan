@@ -10,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.validation.Valid;
 import java.util.Optional;
 
@@ -25,6 +27,7 @@ public class ShoppinglistController {
 
     @GetMapping
     public String displayAllShoppinglist(Model model){
+        
         model.addAttribute("title", "All Shoppinglist");
         model.addAttribute("shoppinglists", shoppinglistRepository.findAll());
         return "shoppinglist/index";
@@ -55,16 +58,19 @@ public class ShoppinglistController {
         return "shoppinglist/add2";
     }
     @PostMapping("add2")
-    public String processAddIngredientToShoppinglistForm(@Valid @ModelAttribute String shoppinglistId,
-                                                         String ingredientId,Errors errors,Model model) {
-        if (errors.hasErrors()) {
+    public String processAddIngredientToShoppinglistForm(@RequestParam String shoppinglistId,
+                                                          @RequestParam String ingredientId,Model model) {
+        /*if (errors.hasErrors()) {
             model.addAttribute("title", "Add Ingredients To Shoppinglists");
             return "shoppinglist/add2";
-        }
-        System.out.println(shoppinglistId);
+        }*/
+
         Optional<Shoppinglist> result = shoppinglistRepository.findById(Integer.parseInt(shoppinglistId));
         Optional<Ingredient> result2 = ingredientRepository.findById(Integer.parseInt(ingredientId));
-        result.get().getIngredients().add(result2.get());
+        Shoppinglist shoppinglist = result.get();
+        Ingredient ingredient = result2.get();
+        shoppinglist.getIngredients().add(ingredient);
+        shoppinglistRepository.save(shoppinglist);
         return "redirect:";
     }
 }
