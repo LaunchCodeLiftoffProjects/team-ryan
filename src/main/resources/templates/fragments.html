@@ -7,10 +7,13 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script th:src="@{/script.js}"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <link th:href="@{/css/bootstrap.css}" rel="stylesheet" />
     <link th:href="@{/css/recipe.css}" rel="stylesheet" />
+
     <script type="text/javascript" th:src="@{/js/bootstrap.js}"></script>
+
 
 </head>
 
@@ -25,17 +28,19 @@
 
     <ul class="navbar-custom">
         <li><a class="nav-link" th:href="@{/}">Home</a></li>
+        <li><a class="nav-link" th:href="@{/search/}">Search</a></li>
         <li><a class="nav-link" th:href="@{/register}">Sign Up</a></li>
         <li><a class="nav-link" th:href="@{/login}">Login</a></li>
         <li><a class="nav-link" th:href="@{/logout}">Logout</a></li>
+
     </ul>
 
-    <div id="searchDiv">
-        <form class="form form-inline ml-auto">
-            <button id="searchByIngredient" name="searchByIngredient" class="button" type="submit">SEARCH</button>
-            <input id="ingredientToSearch" name="ingredientToSearch" class="form form-control" type="text" placeholder="Search By Ingredient">
-        </form>
-    </div>
+<!--    <div id="searchDiv">-->
+<!--        <form class="form form-inline ml-auto">-->
+<!--            <button id="searchButton" class="button" type="submit">SEARCH</button>-->
+<!--            <input id="searchTerm" class="form form-control" type="search" placeholder="Find Your Match..">-->
+<!--        </form>-->
+<!--    </div>-->
 
 </nav>
 
@@ -97,57 +102,5 @@
         <p class="copyright">© MADSKR RECIPES 2020</p>
     </div>
 </footer>
-
-<!--<script src="../static/javascript/api.js"></script>-->
-<script>
-    console.log("javascript connected");
-
-async function search(searchTerm) {
-  // building our url
-  var apiKey = '3057efc6229646c8b0bda8fd922322a6';
-  var api = 'https://api.spoonacular.com/recipes/complexSearch?apiKey=' + apiKey + '&instructionsRequired=true&includeIngredients=' + searchTerm;
-  // retrieving data
-  const response = await fetch(api);
-  const data = await response.json();
-  // using data
-  console.log(api);
-  console.log(data);
-  displayResults(data);
-}
-
-searchByIngredient.addEventListener('click', function (e) {
-  var searchTerm = document.getElementById("ingredientToSearch").value;
-
-  if(typeof(searchTerm) != 'string') {
-      e.preventDefault();
-      console.log("if statement " + searchTerm);
-
-  } else {
-    //grabbing user input
-    (console.log("else statement " + searchTerm));
-    search(searchTerm);
-  }
-});
-
-function displayResults (results) {
-  const displayData = document.getElementById("results");
-  for(let i = 0; i < results.results.length; i++) {
-  var apiRecipeId = ((results.results[i].id).toString());
-console.log(apiRecipeId);
- displayData.innerHTML += `
-    <div>
-      <a href="/recipes/external?id=${results.results[i].id}">${results.results[i].title} </a>
-        <img src="${results.results[i].image}"/>
-
-
-    </div>
-  `;
-}
-}
-
-    </script>
-//adding Bootstrap for Modal
-<script src=”https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js” integrity=”sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo” crossorigin=”anonymous”></script>
-<script src=”https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js” integrity=”sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/” crossorigin=”anonymous”></script>
 </body>
 </html>
