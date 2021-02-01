@@ -19,7 +19,7 @@ public class Shoppinglist {
     @Size(min = 3, max =50, message = "Name must be between 3 and 50 characters")
     private String name;
 
-    @OneToMany
+    @ManyToMany
     private final List<Ingredient> ingredients = new ArrayList<>();
 
 
@@ -39,6 +39,13 @@ public class Shoppinglist {
 
     public List<Ingredient> getIngredients() {
         return ingredients;
+    }
+
+    public void addIngredient(Ingredient ingredient){
+        this.ingredients.add(ingredient);
+    }
+    public void removeIngredient(Ingredient ingredient){
+        this.ingredients.remove(ingredient);
     }
 
     @Override

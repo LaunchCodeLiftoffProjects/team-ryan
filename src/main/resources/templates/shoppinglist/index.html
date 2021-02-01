@@ -14,7 +14,7 @@
     </tr>
     </thead>
     <tr th:each="shoppinglist : ${shoppinglists}">
-        <td><a th:text="${shoppinglist.name}" th:href="'/shoppinglists?shoppinglistId=' + ${shoppinglist.id}"></a></td>
+        <td><a th:text="${shoppinglist.name}" th:href="'/shoppinglist/details?shoppinglistId=' + ${shoppinglist.id}"></a></td>
     </tr>
 </table>
 </div>

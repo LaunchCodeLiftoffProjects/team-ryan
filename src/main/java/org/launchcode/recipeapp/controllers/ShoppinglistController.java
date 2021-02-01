@@ -67,10 +67,41 @@ public class ShoppinglistController {
 
         Optional<Shoppinglist> result = shoppinglistRepository.findById(Integer.parseInt(shoppinglistId));
         Optional<Ingredient> result2 = ingredientRepository.findById(Integer.parseInt(ingredientId));
-        Shoppinglist shoppinglist = result.get();
-        Ingredient ingredient = result2.get();
-        shoppinglist.getIngredients().add(ingredient);
-        shoppinglistRepository.save(shoppinglist);
+        if(result.isPresent() && result2.isPresent()) {
+            Shoppinglist shoppinglist = result.get();
+            Ingredient ingredient = result2.get();
+            if (!shoppinglist.getIngredients().contains(ingredient)) {
+                shoppinglist.addIngredient(ingredient);
+                shoppinglistRepository.save(shoppinglist);
+            }
+        }
         return "redirect:";
+    }
+
+    @GetMapping("details")
+    public String displayShoppinglistDetailsForm(@RequestParam Integer shoppinglistId,Model model){
+
+        Optional<Shoppinglist> result = shoppinglistRepository.findById(shoppinglistId);
+        Shoppinglist shoppinglist = result.get();
+        model.addAttribute("ingredients", shoppinglist.getIngredients());
+        model.addAttribute("shoppinglist", shoppinglist);
+        return "shoppinglist/details";
+    }
+    @GetMapping("delete")
+    public String displayDeleteShoppinglistForm(Model model) {
+        model.addAttribute("name", "Delete Shoppinglist");
+        model.addAttribute("shoppinglists", shoppinglistRepository.findAll());
+        return "shoppinglist/delete";
+    }
+
+    @PostMapping("delete")
+    public String processDeleteShoppinglistForm(@RequestParam(required = false) int[] shoppinglistIds) {
+        if (shoppinglistIds != null) {
+            for (int id : shoppinglistIds) {
+                shoppinglistRepository.deleteById(id);
+            }
+        }
+        return "redirect:";
+
     }
 }
