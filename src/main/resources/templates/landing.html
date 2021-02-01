@@ -194,6 +194,10 @@
 <!--                </div>-->
 <!--            </div>-->
 <!--        </div>-->
+
+        <div id="food">
+
+        </div>
     </div>
 </div>
 
@@ -201,15 +205,40 @@
 
 <!--//need to make code modular to easily replace API key-->
 <!--//need to make recipes random-->
+console.log("javascript landing connected");
+
+window.addEventListener("load", function(){
+           let json = [];
+           fetch("https://api.spoonacular.com/recipes/random?apiKey=3057efc6229646c8b0bda8fd922322a6&number=9").then(function(response){
+             response.json().then(function(json){
+             console.log(json);
+<!--             console.log("first try " + json["recipes"][0]["extendedIngredients"][0]["originalString"]);-->
+               const food = document.getElementById("food");
+               for(let i = 0; i < json["recipes"].length; i++){
+<!--               console.log(json["recipes"][i]["extendedIngredients"][0]["originalString"]);-->
+                food.innerHTML +=
+                `
+                <div class="col-lg-4 col-sm-12 col-md-6">
+                    <div class="card">
+                <img src=${json["recipes"][i]["image"]} height=250 class="card-img-top" alt="${json["recipes"][i]["title"]}">
+                <div class="card-body">
+                <h5 class="card-title">${json["recipes"][i]["title"]}</h5>
+                <p>${json["recipes"][i]["extendedIngredients"]}</p>
+                    </div>
+                    <a href="#" class="btn btn-primary" style="background-color: brown;">View Recipe</a>
+                </div>
+                `
+                };
+               });
+             });
+           });
 
 
 </script>
 </head>
 
 
-<div id="food">
 
-</div>
 
 <div th:replace="fragments :: footer"></div>
 

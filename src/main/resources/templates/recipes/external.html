@@ -14,11 +14,44 @@
 
         <h1>Recipe</h1>
         <div id="recipeSearchDiv">
-            <p th:text =${id}">Recipe ID</p>
+            <data id="apiId" th:value="${id}"></data>
         </div>
 
         <div id="recipeResults">
         </div>
+
+        <script>
+           window.addEventListener("load", function(){
+           let json = [];
+           var apiKey = '3057efc6229646c8b0bda8fd922322a6';
+           var apiId = document.getElementById("apiId").value;
+           console.log("api Id " + apiId);
+           var api = 'https://api.spoonacular.com/recipes/' + apiId +'/analyzedInstructions' + '?apiKey=' + apiKey;
+           console.log("api is " + api);
+           fetch(api).then(function(response){
+             response.json().then(function(json){
+             console.log(json);
+             console.log("recipe json is " + json["steps"["step"]]);
+             console.log("json " + json["results"]);
+             console.log("json 1 " + json[0]["steps"][0]);
+             console.log("json 2 " + json[0["steps"[0]]]);
+<!--               const recipe = document.getElementById("recipeResults");-->
+<!--                recipe.innerHTML +=-->
+<!--                `-->
+<!--                <div class="col-lg-4 col-sm-12 col-md-6">-->
+<!--                    <div class="card">-->
+<!--                <img src=${json["results"][0]["image"]} height=250 class="card-img-top" alt="${json["results"][0]["title"]}">-->
+<!--                <div class="card-body">-->
+<!--                <h5 class="card-title">${json["results"][0]["title"]}</h5>-->
+<!--                    </div>-->
+<!--                    <a href="#" class="btn btn-primary" style="background-color: brown;">View Recipe</a>-->
+<!--                </div>-->
+<!--                ` ;-->
+
+             });
+           });
+         });
+        </script>
 
     </div>
         <script src="../static/javascript/api.js"></script>

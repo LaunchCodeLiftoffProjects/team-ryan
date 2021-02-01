@@ -20,19 +20,20 @@ public class SearchController {
     //need to pass this value in from view
 
     @GetMapping("recipes/external")
-    @ResponseBody
+
     public String recipesWithQueryParam(@RequestParam String id, Model model) {
         //displays text on the page
-        model.addAttribute("apiRecipeId", id);
-        return "Id is " + id;
+        model.addAttribute("id", id);
+        return "recipes/external";
     }
 
-//    @GetMapping("search/recipes")
-//    @ResponseBody
-//    public String passIdToView(@RequestParam String id) {
-//        //displays text on the page
-//        return "search/recipes";
-//    }
+    //passes id through URL
+    @GetMapping("recipes/external/{id}")
+    @ResponseBody
+    public String renderRecipesExternal(@PathVariable String id){
+        return "recipes/external" + id;
+    }
+
 
 
 
