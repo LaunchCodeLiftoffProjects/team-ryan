@@ -1,0 +1,230 @@
+html, body {
+ font-family: raleway;
+ height: 100%;
+}
+
+body {
+ display: flex;
+ flex-direction: column;
+}
+
+.content {
+ flex: 1 0 auto;
+}
+
+ul li{
+ display: inline-block;
+ font-size:16px;
+ font-family:raleway;
+ text-align: right;
+}
+
+ul li:hover{
+ color:orange;
+
+}
+
+.navbar-custom {
+ background-color: #273238;  /* Navy */
+}
+
+.nav-link{
+ color: #F4BC53; /* Yellow */
+}
+
+.button {
+ background-color: #A62923; /* Red */
+ border: none;
+ color: white;
+ padding: 8px 15px;
+ border-radius: 6px;
+ text-align: center;
+ letter-spacing: 2px;
+ text-decoration: none;
+ display: inline-block;
+ font-size: 16px;
+ transition-duration: 0.4s;
+ font-family:raleway;
+}
+
+.button:hover {
+ background-color: #EF8331; /* Orange */
+ color: white;
+}
+
+.form {
+ vertical-align: center;
+}
+
+.form input[type=search] {
+ border: none;
+ float: right;
+ padding: 10px 6px;
+ border-radius: 6px;
+ font-size: 16px;
+ margin-left: 10px;
+ height: 32px;
+}
+
+.logo img {
+ float:left;
+ vertical-align: center;
+ align: left;
+}
+
+.topContainer{
+ margin-top: 30px;
+ color: brown;
+ background-image: url(https://images.unsplash.com/photo-1565958011703-44f9829ba187?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTI5fHxmb29kJTIwcmVjaXBlJTIwYmFja2dyb3VuZHxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60);
+ background-size: cover;
+ background-position:center;
+ padding: 80px;
+ border-radius: 6px;
+}
+
+.topContainer h3 {
+ font-family:raleway;
+ font-weight: bold;
+ font-size:40px;
+ color: #A62923; /* Red */
+ text-align: center;
+}
+
+.topContainer p {
+ font-family:raleway;
+ font-style:italic;
+ text-align: center;
+ color: #A62923; /* Red */
+ font-size: 24px;
+}
+
+.card {
+ width: 18rem;
+ margin-top: 30px
+}
+
+.card img {
+ max-width: 100%;
+ height: auto;
+ overflow: hidden;
+ border-radius: 4px;
+}
+
+.card-title {
+ font-family:raleway;
+ font-weight: bold;
+}
+
+.card-text {
+ font-family:raleway;
+}
+
+.div1 {
+  width: 700px;
+  height: 200px;
+  padding: 10px;
+  border: 1px solid #aaaaaa;
+  border-radius: 4px;
+  font-weight: bold;
+  margin: 10px;
+}
+
+.footer img{
+ width: 30px;
+ height: 30px;
+ padding: 3px;
+}
+
+footer {
+ bottom: 0;
+ left: 0;
+ width: 100%;
+ background-color: #273238;  /* Navy */
+ color: white;
+}
+
+.footer h6 {
+ font-weight: bold;
+ color: white;
+ padding-top: 1px;
+}
+
+.footer a {
+ color: #F4BC53; /* Yellow */
+ font-family:raleway;
+ font-size: 14px;
+}
+
+.short-footer {
+ flex-shrink: 0;
+}
+
+.row{
+ padding-top: 16px;
+ margin-top: 90px;
+ color: black;
+}
+
+.footerContainer{
+ text-align: right;
+ padding: 20px;
+ font-family: raleway;
+}
+
+.checked{
+ color: orange;
+}
+
+.form-custom {
+ padding-top: 40px;
+ padding-left: 40px;
+ font-family: raleway;
+}
+
+p {
+ font-size:16px;
+ font-family:raleway;
+ padding-left: 40px;
+}
+
+.error {
+  color: red;
+}
+
+h1 {
+ padding-top: 40px;
+ padding-left: 40px;
+ font-size:40px;
+}
+
+.userhome {
+ align: center;
+ margin: 30px;
+ padding: 30px;
+}
+
+.container {
+ display: flex;
+ padding-bottom: 100px;
+}
+
+.fixed {
+ width:200px;
+ padding: 20px;
+}
+
+.flex-item {
+ flex-grow: 1;
+}
+
+h4 {
+ font-size: 18px;
+ color: #EF8331; /* Orange */
+ font-weight: bold;
+}
+
+.my-3 {
+ padding: 20px
+}
+
+
