@@ -227,4 +227,8 @@ h4 {
  padding: 20px
 }
 
+.left {
+ text-align: right;
+ font-weight: bold;
 
+}
