@@ -12,7 +12,7 @@
 
     <div class="content">
 
-        <h1>Recipe</h1>
+        <h1>Recipe Results</h1>
         <div id="recipeSearchDiv">
             <data id="apiId" th:value="${id}"></data>
         </div>
@@ -23,34 +23,39 @@
         <script>
            window.addEventListener("load", function(){
            let json = [];
-           var apiKey = '3057efc6229646c8b0bda8fd922322a6';
+           var apiKey = '75e7675374c1412d8dca7030a0d54193';
            var apiId = document.getElementById("apiId").value;
            console.log("api Id " + apiId);
-           var api = 'https://api.spoonacular.com/recipes/' + apiId +'/analyzedInstructions' + '?apiKey=' + apiKey;
+           var api = 'https://api.spoonacular.com/recipes/' + apiId +'/information' + '?apiKey=' + apiKey;
            console.log("api is " + api);
            fetch(api).then(function(response){
              response.json().then(function(json){
              console.log(json);
-             console.log("recipe json is " + json["steps"["step"]]);
-             console.log("json " + json["results"]);
-             console.log("json 1 " + json[0]["steps"][0]);
-             console.log("json 2 " + json[0["steps"[0]]]);
-<!--               const recipe = document.getElementById("recipeResults");-->
-<!--                recipe.innerHTML +=-->
-<!--                `-->
-<!--                <div class="col-lg-4 col-sm-12 col-md-6">-->
-<!--                    <div class="card">-->
-<!--                <img src=${json["results"][0]["image"]} height=250 class="card-img-top" alt="${json["results"][0]["title"]}">-->
-<!--                <div class="card-body">-->
-<!--                <h5 class="card-title">${json["results"][0]["title"]}</h5>-->
-<!--                    </div>-->
-<!--                    <a href="#" class="btn btn-primary" style="background-color: brown;">View Recipe</a>-->
-<!--                </div>-->
-<!--                ` ;-->
-
-             });
+             console.log("extended ingredients " + json["extendedIngredients"]);
+               console.log("extended ingredients length " + json["extendedIngredients"].length);
+               const recipe = document.getElementById("recipeResults");
+                recipe.innerHTML +=
+                `
+                <div class="col-lg-4 col-sm-12 col-md-6">
+                    <div class="card">
+                <img src=${json["image"]} height=250 class="card-img-top" alt="${json["title"]}">
+                <div class="card-body">
+                <h5 class="card-title">${json["title"]}</h5>
+                <p>${json["instructions"]}</p>
+                <p>${json["summary"]}</p>
+                `
+                for(let j=0; j < json["extendedIngredients"].length; j++) {
+                recipe.innerHTML +=
+                `
+                    <p>${json["extendedIngredients"][j]["originalString"]}</p>
+                    </div>
+                </div>
+                ` ;
+             };
            });
          });
+         });
+
         </script>
 
     </div>
