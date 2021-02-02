@@ -11,12 +11,11 @@
     <header th:replace="fragments :: header"></header>
 
     <div class="content">
-
-        <h1>Recipe Results</h1>
         <div id="recipeSearchDiv">
             <data id="apiId" th:value="${id}"></data>
         </div>
 
+        <h1>Recipe Results</h1>
         <div id="recipeResults">
         </div>
 
@@ -36,20 +35,36 @@
                const recipe = document.getElementById("recipeResults");
                 recipe.innerHTML +=
                 `
-                <div class="col-lg-4 col-sm-12 col-md-6">
-                    <div class="card">
-                <img src=${json["image"]} height=250 class="card-img-top" alt="${json["title"]}">
-                <div class="card-body">
-                <h5 class="card-title">${json["title"]}</h5>
-                <p>${json["instructions"]}</p>
-                <p>${json["summary"]}</p>
+                <table>
+                    <tr>
+                        <td>
+                        <div class="row">
+                        <div class="col-lg-4 col-sm-12 col-md-6">
+                            <div class="card">
+                            <img src=${json["image"]} height=250 class="card-img-top" alt="${json["title"]}">
+                                <div class="card-body">
+                                <h5 class="card-title">${json["title"]}</h5>
+                                <p>${json["instructions"]}</p>
+                                <p>${json["summary"]}</p>
+                            </div>
+                        </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        <div class="col-lg-4 col-sm-12 col-md-6">
+                            <h5>Ingredients</h5>
                 `
                 for(let j=0; j < json["extendedIngredients"].length; j++) {
                 recipe.innerHTML +=
                 `
-                    <p>${json["extendedIngredients"][j]["originalString"]}</p>
-                    </div>
-                </div>
+                            <p>${json["extendedIngredients"][j]["originalString"]}</p>
+                         </div>
+                         </td>
+                    </tr>
+                 </table>
+                 </div>
+                 </div>
                 ` ;
              };
            });
