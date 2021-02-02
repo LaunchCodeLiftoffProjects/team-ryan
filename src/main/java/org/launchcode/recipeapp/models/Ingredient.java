@@ -1,10 +1,10 @@
 package org.launchcode.recipeapp.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -20,6 +20,9 @@ public class Ingredient {
 
     private IngredientCategory category;
     private IngredientToList toList;
+
+    @ManyToMany
+    private final List<Shoppinglist> shoppinglists = new ArrayList<>();
 
     public Ingredient(String name, String description, IngredientCategory category, IngredientToList toList) {
         this.name = name;
@@ -55,6 +58,17 @@ public class Ingredient {
 
     public Integer getId() {
         return id;
+    }
+
+    public List<Shoppinglist> getShoppinglists() {
+        return shoppinglists;
+    }
+
+    public void addShoppinglist(Shoppinglist shoppinglist){
+        this.shoppinglists.add(shoppinglist);
+    }
+    public void removeShoppinglist(Shoppinglist shoppinglist){
+        this.shoppinglists.remove(shoppinglist);
     }
 
     @Override

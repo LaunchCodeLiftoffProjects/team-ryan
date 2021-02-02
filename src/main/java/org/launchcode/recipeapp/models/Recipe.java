@@ -29,6 +29,9 @@ public class Recipe extends AbstractEntity {
 //    @ManyToMany
 //    private final List<Tag> tags = new ArrayList<>();
 
+    @OneToMany
+    private final List<Ingredient> ingredients = new ArrayList<>();
+
     public Recipe(String name, RecipeCategory recipeCategory) {
         this.name = name;
         this.recipeCategory = recipeCategory;

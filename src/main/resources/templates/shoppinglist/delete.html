@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body>
+<div class="content">
+
+    <div th:replace="fragments :: page-header"></div>
+
+<!--    <header th:replace="fragments :: header"></header>-->
+
+    <form class="form-custom" method="post">
+
+        <th:block th:each="shoppinglist : ${shoppinglists}">
+            <div class="form-group">
+                <label>
+                    <span th:text="${shoppinglist.name}"></span>
+                    <input type="checkbox" name="shoppinglistIds" th:value="${shoppinglist.id}" class="form-control">
+                </label>
+            </div>
+        </th:block>
+
+        <input type="submit" value="DELETE" class="button btn btn-danger">
+    </form>
+</div>
+<!--<div th:replace="fragments :: footer" class="short-footer"></div>-->
+</body>
+</html>
