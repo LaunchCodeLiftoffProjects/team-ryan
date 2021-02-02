@@ -65,11 +65,14 @@ function displayResults (results) {
   var apiRecipeId = ((results.results[i].id).toString());
 console.log(apiRecipeId);
  displayData.innerHTML += `
-    <div>
-      <a href="/recipes/external?id=${results.results[i].id}">${results.results[i].title} </a>
-        <img src="${results.results[i].image}"/>
-
-
+    <div class="col-lg-4 col-sm-12 col-md-6">
+    <div class="card">
+    <img src=${results.results[i].image} class="card-img-top" alt="${results["title"]}"/>
+    <div class="card-body">
+    <h5 class="card-title">${results.results[i].title}</h5>
+    </div>
+        <a href="/recipes/external?id=${results.results[i].id}" class="btn btn-primary" style="background-color: brown;">View Recipe</a>
+    </div>
     </div>
   `;
 }
