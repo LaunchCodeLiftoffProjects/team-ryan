@@ -191,3 +191,11 @@ table {
  padding: 30px;
 }
 
+#landing {
+ margin-top: 30px;
+ color: brown;
+ background-position:center;
+ padding:30px;
+ border-radius: 6px;
+}
+
