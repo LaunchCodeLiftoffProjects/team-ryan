@@ -12,7 +12,10 @@
     <p>...we make the best recipe</p>
 </div>
 
-
+<div id="landing">
+<h3>Need Inspiration For Dinner?</h3>
+<h2>Check Out Our Exciting Recipes!</h2>
+</div>
 <div class="container">
     <div class="row">
 <!--        <div class="col-lg-4 col-sm-12 col-md-6">-->
@@ -174,26 +177,26 @@
             <!--                </div>-->
             <!--            </div>-->
 
-            <!--        </div>-->
-            <!--        <div class="col-lg-4 col-sm-12 col-md-6">-->
-            <!--            <div class="card">-->
-            <!--                <img src="https://images.unsplash.com/photo-1560684352-8497838a2229?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=756&q=80"-->
-            <!--                     class="card-img-top" alt="soup">-->
-            <!--                <div class="card-body">-->
-            <!--                    <h5 class="card-title">Creamy Oyster Soup</h5>-->
-            <!--                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the-->
-            <!--                        card's content.</p>-->
-            <!--                    <div class="checked">-->
-            <!--                        <span class="fa fa-star checked"></span>-->
-            <!--                        <span class="fa fa-star checked"></span>-->
-            <!--                        <span class="fa fa-star checked"></span>-->
-            <!--                        <span class="fa fa-star"></span>-->
-            <!--                        <span class="fa fa-star"></span>-->
-            <!--                    </div>-->
-            <!--                    <a href="#" class="btn btn-primary" style="background-color: brown;">View Recipe</a>-->
-            <!--                </div>-->
-            <!--            </div>-->
-            <!--        </div>-->
+<!--                    </div>-->
+<!--                    <div class="col-lg-4 col-sm-12 col-md-6">-->
+<!--                        <div class="card">-->
+<!--                            <img src="https://images.unsplash.com/photo-1560684352-8497838a2229?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=756&q=80"-->
+<!--                                 class="card-img-top" alt="soup">-->
+<!--                            <div class="card-body">-->
+<!--                                <h5 class="card-title">Creamy Oyster Soup</h5>-->
+<!--                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the-->
+<!--                                    card's content.</p>-->
+<!--                                <div class="checked">-->
+<!--                                    <span class="fa fa-star checked"></span>-->
+<!--                                    <span class="fa fa-star checked"></span>-->
+<!--                                    <span class="fa fa-star checked"></span>-->
+<!--                                    <span class="fa fa-star"></span>-->
+<!--                                    <span class="fa fa-star"></span>-->
+<!--                                </div>-->
+<!--                                <a href="#" class="btn btn-primary" style="background-color: brown;">View Recipe</a>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
 
             <div id="food">
 
@@ -206,7 +209,7 @@ console.log("javascript landing connected");
 
 window.addEventListener("load", function(){
           let apiKey = '75e7675374c1412d8dca7030a0d54193'
-          let api = 'https://api.spoonacular.com/recipes/random?apiKey=' + apiKey + '&number=9';
+          let api = 'https://api.spoonacular.com/recipes/random?apiKey=' + apiKey + '&number=3';
           let json = [];
            fetch(api).then(function(response){
              response.json().then(function(json){
@@ -216,34 +219,25 @@ window.addEventListener("load", function(){
 
                 food.innerHTML +=
                 `
-                <table>
-                    <tr>
-                        <th>Recipe</th>
-                        <th>Instructions</th>
-                <div class="col-lg-4 col-sm-12 col-md-6">
-                    <div class="card">
-                    <tr>
-                        <td>
-                            <img src=${json["recipes"][i]["image"]} height=250 class="card-img-top" alt="${json["recipes"][i]["title"]}">
+                <div>
+                    <div class="card col-sm">
+                        <img class="card" src=${json["recipes"][i]["image"]} height=250 class="card-img-top" alt="${json["recipes"][i]["title"]}">
                             <div class="card-body">
-                            <h5 class="card-title">${json["recipes"][i]["title"]}</h5>
-                        </td>
-                        <td>
-                            <p>${json["recipes"][i]["instructions"]}</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Ingredients</th>
+                                <h5 class="card-title">${json["recipes"][i]["title"]}</h5>
+                            </div>
+                    </div>
+                    <div class="col-sm">
+                          <h4 class=card-title">Instructions</h4>
+                          <p>${json["recipes"][i]["instructions"]}</p>
+                    </div>
+                    <div class="col-sm">
+                           <h4 class="card-title">Ingredients</h4>
                 `
                 for(let j=0; j< json["recipes"][i]["extendedIngredients"].length; j++){
                 food.innerHTML+=
                 `
-                            <td>
-                                <p>${json["recipes"][i]["extendedIngredients"][j]["originalString"]}</p>
-                            </td>
-                   </tr>
-                </table>
-                </div>
+                            <p>${json["recipes"][i]["extendedIngredients"][j]["originalString"]}</p>
+                    </div>
                 `
                   };
                 };
