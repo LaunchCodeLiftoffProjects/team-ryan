@@ -220,11 +220,13 @@ window.addEventListener("load", function(){
                 food.innerHTML +=
                 `
                 <div>
-                    <div class="card col-sm">
-                        <img class="card" src=${json["recipes"][i]["image"]} height=250 class="card-img-top" alt="${json["recipes"][i]["title"]}">
+                    <div class="col-sm">
+                    <div class="card">
+                        <img src=${json["recipes"][i]["image"]} height=250 class="card-img-top" alt="${json["recipes"][i]["title"]}">
                             <div class="card-body">
                                 <h5 class="card-title">${json["recipes"][i]["title"]}</h5>
                             </div>
+                    </div>
                     </div>
                     <div class="col-sm">
                           <h4 class=card-title">Instructions</h4>
