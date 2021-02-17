@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http//www.thymeleaf.org">
+<head th:replace="fragments :: head"></head>
+
+<body>
+
+<div class="content">
+
+    <div th:replace="fragments :: page-header"></div>
+
+    <header th:replace="fragments :: header"></header>
+
+    <div class="content" >
+
+        <h1>Search by Ingredient</h1>
+        <div id="searchDiv" class="col-xs-3">
+            <!-- <form method="post" action="/search/index" class="form form-inline ml-auto"> -->
+            <button name="searchByIngredient" id="searchByIngredient" class="button" type="submit">SEARCH</button><br><br>
+            <input name="ingredientToSearch" id="ingredientToSearch" class="form form-control" type='text' size="50" placeholder="Search by Ingredient"><br><br>
+            <!-- </form> -->
+        </div>
+
+        <div id="results">
+        </div>
+
+    </div>
+<!--    <script src="../static/javascript/api.js"></script>-->
+</div>
+
+<div th:replace="fragments :: footer" class="short-footer"></div>
+
+    <script>
+console.log("javascript index connected");
+
+async function search(searchTerm) {
+  // building our url
+  var apiKey = '75e7675374c1412d8dca7030a0d54193';
+  var api = 'https://api.spoonacular.com/recipes/complexSearch?apiKey=' + apiKey + '&instructionsRequired=true&includeIngredients=' + searchTerm;
+  // retrieving data
+  const response = await fetch(api);
+  const data = await response.json();
+  // using data
+  console.log(api);
+  console.log(data);
+  displayResults(data);
+}
+
+searchByIngredient.addEventListener('click', function (e) {
+  var searchTerm = document.getElementById("ingredientToSearch").value;
+
+  if(typeof(searchTerm) != 'string') {
+      e.preventDefault();
+      console.log("if statement " + searchTerm);
+
+  } else {
+    //grabbing user input
+    (console.log("else statement " + searchTerm));
+    search(searchTerm);
+  }
+});
+
+function displayResults (results) {
+  const displayData = document.getElementById("results");
+  for(let i = 0; i < results.results.length; i++) {
+  var apiRecipeId = ((results.results[i].id).toString());
+console.log(apiRecipeId);
+ displayData.innerHTML += `
+    <div class="col-lg-4 col-sm-12 col-md-6">
+    <div class="card">
+    <img src=${results.results[i].image} class="card-img-top" alt="${results["title"]}"/>
+    <div class="card-body">
+    <h5 class="card-title">${results.results[i].title}</h5>
+    </div>
+        <a href="/recipes/external?id=${results.results[i].id}" class="btn btn-primary" style="background-color: brown;">View Recipe</a>
+    </div>
+    </div>
+  `;
+}
+}
+
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http//www.thymeleaf.org">
+<head th:replace="fragments :: head"></head>
+
+<body>
+
+<div class="content">
+
+    <div th:replace="fragments :: page-header"></div>
+
+    <header th:replace="fragments :: header"></header>
+
+    <div class="content">
+        <div id="recipeSearchDiv">
+            <data id="apiId" th:value="${id}"></data>
+        </div>
+
+        <h1></h1>
+        <div id="recipeResults">
+        </div>
+
+        <script>
+           window.addEventListener("load", function(){
+           let json = [];
+           var apiKey = '75e7675374c1412d8dca7030a0d54193';
+           var apiId = document.getElementById("apiId").value;
+           console.log("api Id " + apiId);
+           var api = 'https://api.spoonacular.com/recipes/' + apiId +'/information' + '?apiKey=' + apiKey;
+           console.log("api is " + api);
+           fetch(api).then(function(response){
+             response.json().then(function(json){
+             console.log(json);
+             console.log("extended ingredients " + json["extendedIngredients"]);
+               console.log("extended ingredients length " + json["extendedIngredients"].length);
+               const recipe = document.getElementById("recipeResults");
+                recipe.innerHTML +=
+                `
+                <table>
+                    <tr>
+                        <td>
+                        <div class="row">
+                        <div class="col-sm">
+                            <div class="card">
+                                <img src=${json["image"]} height=250 class="card-img-top" alt="${json["title"]}">
+                                    <div class="card-body">
+                                        <h5 class="card-title">${json["title"]}</h5>
+                                    </div>
+                            </div>
+                            <div class="col-sm">
+                                    <h5>Instructions</h5>
+                                    <p>${json["instructions"]}</p>
+                                    <p>${json["summary"]}</p>
+                            </div>
+                            </div>
+                            </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        <div class="col-sm">
+                            <h5>Ingredients</h5>
+                `
+                for(let j=0; j < json["extendedIngredients"].length; j++) {
+                recipe.innerHTML +=
+                `
+                            <p>${json["extendedIngredients"][j]["originalString"]}</p>
+                         </div>
+                         </td>
+                    </tr>
+                 </table>
+                 </div>
+                 </div>
+                ` ;
+             };
+           });
+         });
+         });
+
+        </script>
+
+    </div>
+        <script src="../static/javascript/api.js"></script>
+</div>
+
+<div th:replace="fragments :: footer" class="short-footer"></div>
+
+    <script>
+    </script>
+</body>
+</html>
+
