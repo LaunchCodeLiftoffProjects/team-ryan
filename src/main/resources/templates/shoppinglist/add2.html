@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body>
+<form method="POST">
+    <div class="form-group">
+        <label>Shoppinglist
+            <select name="shoppinglistId">
+                <option th:each="shoppinglist : ${shoppinglists}"
+                        th:value="${shoppinglist.id}"
+                        th:text="${shoppinglist.name}"></option>
+            </select>
+<!--           <p class="error" th:errors="${shoppinglists}"></P>-->
+        </label>
+    </div>
+    <div class="form-group">
+        <label>Ingredient
+            <select name="ingredientId">
+                <option th:each="ingredient : ${ingredients}"
+                        th:value="${ingredient.id}"
+                        th:text="${ingredient.name}"></option>
+            </select>
+<!--            <p class="error" th:errors="${ingredients}"></p>-->
+        </label>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Add" class="btn btn-success">
+    </div>
+</form>
+</body>
+</html>

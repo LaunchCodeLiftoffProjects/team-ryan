@@ -1,8 +1,11 @@
 package org.launchcode.recipeapp;
 
+
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.OneToOne;
 import java.util.Objects;
 
 @MappedSuperclass
@@ -15,6 +18,7 @@ public class AbstractEntity {
     public int getId() {
         return id;
     }
+
 
     @Override
     public String toString() {

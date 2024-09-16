@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+
+<body>
+
+<div class="content">
+<div th:replace="fragments :: page-header"></div>
+
+<table  class="table table-striped">
+    <thead>
+    <tr>
+        <th>Shoppinglist Name</th>
+    </tr>
+    </thead>
+    <tr th:each="shoppinglist : ${shoppinglists}">
+        <td><a th:text="${shoppinglist.name}" th:href="'/shoppinglist/details?shoppinglistId=' + ${shoppinglist.id}"></a></td>
+    </tr>
+</table>
+</div>
+</body>
+</html>
